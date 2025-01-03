@@ -9,6 +9,8 @@
     "lint": "eslint './**/*.{ts,tsx,js,jsx}'",
     "lint:fix": "eslint --fix './**/*.{ts,tsx,js,jsx}'",
     "lint:styled": "stylelint './src/**/*.{ts,tsx,js,jsx}' --fix",
+    "postinstall": "husky install",
+    "lint-front": "lint-staged",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -36,6 +38,8 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
     "postcss": "^8.4.49",
     "postcss-styled-syntax": "^0.7.0",
     "postcss-syntax": "^0.36.2",
@@ -46,5 +50,11 @@
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5",
     "vite-tsconfig-paths": "^5.1.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "stylelint --fix"
+    ]
   }
 }
