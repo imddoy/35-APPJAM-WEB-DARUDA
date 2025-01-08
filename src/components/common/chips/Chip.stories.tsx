@@ -9,15 +9,6 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    stroke: {
-      control: 'boolean',
-    },
-    rounded: {
-      control: 'radio',
-      options: ['round', 'rect'],
-    },
-  },
 } satisfies Meta<typeof Chip>;
 
 export default meta;
@@ -26,40 +17,43 @@ const ChipTemplate: StoryFn<typeof Chip> = (args) => <Chip {...args} />;
 
 export const Default = ChipTemplate.bind({});
 Default.args = {
-  rounded: 'round',
   stroke: false,
-  children: <Chip.Label>칩 컴포넌트</Chip.Label>,
+  size: 'small',
+  children: (
+    <Chip.RoundContainer>
+      <Chip.Label>칩 컴포넌트</Chip.Label>
+    </Chip.RoundContainer>
+  ),
 };
 
 export const Tool = ChipTemplate.bind({});
 Tool.args = {
-  rounded: 'rect',
+  stroke: false,
+  size: 'small',
   children: (
-    <>
+    <Chip.RectContainer>
       <Chip.Icon src="https://via.placeholder.com/20" alt="Custom Icon" />
       <Chip.Label>Tool 이름</Chip.Label>
-    </>
+    </Chip.RectContainer>
   ),
 };
 
 export const ToolButton = ChipTemplate.bind({});
 ToolButton.args = {
-  rounded: 'rect',
   children: (
-    <>
+    <Chip.RectContainer>
       <Chip.Icon src="https://via.placeholder.com/20" alt="Custom Icon" />
       <Chip.Label>Tool 이름</Chip.Label>
       <Chip.Icon src="https://via.placeholder.com/20" alt="Custom Icon" />
-    </>
+    </Chip.RectContainer>
   ),
 };
 
 export const Category = ChipTemplate.bind({});
 Category.args = {
-  rounded: 'rect',
   children: (
-    <>
+    <Chip.RectContainer>
       <Chip.Label>카테고리</Chip.Label>
-    </>
+    </Chip.RectContainer>
   ),
 };

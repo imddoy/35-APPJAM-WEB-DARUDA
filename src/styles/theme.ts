@@ -103,6 +103,12 @@ const fonts = {
     font-family: 'AppleSDGothicNeoR00', sans-serif;
     line-height: 1.6rem;
   `,
+  caption_8_b: css`
+    font-weight: 700;
+    font-size: 0.8rem;
+    font-family: 'AppleSDGothicNeoB00', sans-serif;
+    line-height: 1.1rem;
+  `,
 };
 
 const theme = {
