@@ -1,7 +1,7 @@
 import { ImgPopupmodal84 } from '@assets/svgs';
 
-import { ModalWrapper } from './component';
-import S from './Modal.styled';
+import { ModalWrapper } from '../component';
+import S from '../Modal.styled';
 
 interface ConfirmModalProps {
   ModalTitle: string;
