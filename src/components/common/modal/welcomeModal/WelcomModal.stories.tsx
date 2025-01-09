@@ -33,7 +33,7 @@ export const Default: Story = {
       return (
         <div>
           <button onClick={() => setIsOpen(true)}>모달 열기</button>
-          <Story args={{ ...context.args, isOpen }} />
+          <Story args={{ ...context.args, isOpen, setIsOpen }} />
         </div>
       );
     },

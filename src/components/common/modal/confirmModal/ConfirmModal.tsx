@@ -12,16 +12,17 @@ interface ConfirmModalProps {
     secondBtnContent: string;
   };
   isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
-const ConfirmModal = ({ ModalTitle, ModalContent, btnProps, isOpen }: ConfirmModalProps) => {
+const ConfirmModal = ({ ModalTitle, ModalContent, btnProps, isOpen, setIsOpen }: ConfirmModalProps) => {
   return (
     <ModalWrapper isOpen={isOpen}>
       <S.ModalContainer>
         <ImgPopupmodal84 />
         <S.ModalTitle>{ModalTitle}</S.ModalTitle>
         <S.ModalContent>{ModalContent}</S.ModalContent>
-        <ConfirmBtns {...btnProps} />
+        <ConfirmBtns {...btnProps} setIsOpen={setIsOpen} />
       </S.ModalContainer>
     </ModalWrapper>
   );
