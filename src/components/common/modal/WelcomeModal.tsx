@@ -5,11 +5,12 @@ import S from './Modal.styled';
 
 interface ConfirmModalProps {
   ModalTitle: string;
+  isOpen: boolean;
 }
 
-const WelcomeModal = ({ ModalTitle }: ConfirmModalProps) => {
+const WelcomeModal = ({ ModalTitle, isOpen }: ConfirmModalProps) => {
   return (
-    <ModalWrapper $isforWelcome={true}>
+    <ModalWrapper $isforWelcome={true} isOpen={isOpen}>
       <S.ModalContainer>
         <S.ModalTitle>{ModalTitle}</S.ModalTitle>
         <ImgPopupmodal84 />

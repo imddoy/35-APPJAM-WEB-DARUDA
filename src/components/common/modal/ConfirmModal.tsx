@@ -4,7 +4,6 @@ import { ModalWrapper, ConfirmBtns } from './component';
 import S from './Modal.styled';
 
 interface ConfirmModalProps {
-  isforDelete: boolean;
   ModalTitle: string;
   ModalContent: string;
   btnProps: {
@@ -12,11 +11,12 @@ interface ConfirmModalProps {
     firstBtnContent: string;
     secondBtnContent: string;
   };
+  isOpen: boolean;
 }
 
-const ConfirmModal = ({ ModalTitle, ModalContent, btnProps }: ConfirmModalProps) => {
+const ConfirmModal = ({ ModalTitle, ModalContent, btnProps, isOpen }: ConfirmModalProps) => {
   return (
-    <ModalWrapper>
+    <ModalWrapper isOpen={isOpen}>
       <S.ModalContainer>
         <ImgPopupmodal84 />
         <S.ModalTitle>{ModalTitle}</S.ModalTitle>

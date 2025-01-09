@@ -1,23 +1,42 @@
 import styled from '@emotion/styled';
 import { ReactNode } from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 
 interface ModalWrapperProps {
   children: ReactNode;
   $isforWelcome?: boolean;
+  isOpen: boolean;
 }
 
-const ModalWrapper = ({ children, $isforWelcome = false }: ModalWrapperProps) => {
-  // return ReactDOM.createPortal(
-  return <S.ModalWrapper $isforWelcome={$isforWelcome}>{children}</S.ModalWrapper>;
-  // document.getElementById('portal-root') as HTMLElement,
-  // );
+const ModalWrapper = ({ children, $isforWelcome = false, isOpen }: ModalWrapperProps) => {
+  if (!isOpen) return null;
+
+  return ReactDOM.createPortal(
+    <S.ModalWrapper $isforWelcome={$isforWelcome}>
+      <S.ModalContent $isforWelcome={$isforWelcome}>{children}</S.ModalContent>
+    </S.ModalWrapper>,
+
+    document.getElementById('portal-root') as HTMLElement,
+  );
 };
 
 export default ModalWrapper;
 
 const S = {
-  ModalWrapper: styled.div<{ $isforWelcome: boolean }>`
+  ModalWrapper: styled.dialog<{ $isforWelcome: boolean }>`
+    top: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100%;
+    overflow: auto;
+
+    background: rgb(70 70 70 / 60%);
+    backdrop-filter: blur(6px);
+  `,
+  ModalContent: styled.div<{ $isforWelcome: boolean }>`
     display: flex;
     flex-direction: column;
     gap: 2.5rem;

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 
 import ConfirmModal from './ConfirmModal';
 
@@ -22,12 +23,16 @@ const meta: Meta<typeof ConfirmModal> = {
       description: '버튼 관련 설정입니다.',
       control: { type: 'object' },
     },
+    isOpen: {
+      description: '모달이 활성화된 상태인지를 나타냅니다',
+      control: { type: 'boolean' },
+    },
   },
 };
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof ConfirmModal>;
 
 export const Default: Story = {
   args: {
@@ -38,7 +43,20 @@ export const Default: Story = {
       firstBtnContent: '그만두기',
       secondBtnContent: '마저 작성하기',
     },
+    isOpen: false,
   },
+  decorators: [
+    (Story, context) => {
+      const [isOpen, setIsOpen] = useState(context.args.isOpen);
+
+      return (
+        <div>
+          <button onClick={() => setIsOpen(true)}>모달 열기</button>
+          <Story args={{ ...context.args, isOpen }} />
+        </div>
+      );
+    },
+  ],
 };
 
 export const DeleteModal: Story = {
@@ -51,6 +69,20 @@ export const DeleteModal: Story = {
       secondBtnContent: '한번더 생각할게요',
     },
   },
+  decorators: [
+    (Story, context) => {
+      const [isOpen, setIsOpen] = useState(context.args.isOpen);
+
+      return (
+        <div>
+          <button style={{ border: '1px solid black !important' }} onClick={() => setIsOpen(true)}>
+            모달 열기
+          </button>
+          <Story args={{ ...context.args, isOpen }} />
+        </div>
+      );
+    },
+  ],
 };
 
 export const DeleteAccountModal: Story = {
@@ -63,4 +95,16 @@ export const DeleteAccountModal: Story = {
       secondBtnContent: '한번더 생각할게요',
     },
   },
+  decorators: [
+    (Story, context) => {
+      const [isOpen, setIsOpen] = useState(context.args.isOpen);
+
+      return (
+        <div>
+          <button onClick={() => setIsOpen(true)}>모달 열기</button>
+          <Story args={{ ...context.args, isOpen }} />
+        </div>
+      );
+    },
+  ],
 };
