@@ -12,7 +12,7 @@ const ModalWrapper = ({ children, $isforWelcome = false, isOpen }: ModalWrapperP
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
-    <S.ModalWrapper $isforWelcome={$isforWelcome}>
+    <S.ModalWrapper>
       <S.ModalContent $isforWelcome={$isforWelcome}>{children}</S.ModalContent>
     </S.ModalWrapper>,
 
@@ -23,18 +23,18 @@ const ModalWrapper = ({ children, $isforWelcome = false, isOpen }: ModalWrapperP
 export default ModalWrapper;
 
 const S = {
-  ModalWrapper: styled.dialog<{ $isforWelcome: boolean }>`
+  ModalWrapper: styled.dialog`
     top: 0;
     z-index: 999;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     overflow: auto;
 
     background: rgb(70 70 70 / 60%);
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(0.6rem);
   `,
   ModalContent: styled.div<{ $isforWelcome: boolean }>`
     display: flex;

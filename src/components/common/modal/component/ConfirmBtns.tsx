@@ -24,7 +24,6 @@ export default ConfirmBtns;
 const Button = styled.button`
   ${({ theme }) => theme.fonts.body_16_b};
   display: flex;
-  gap: 1rem;
   align-items: center;
   justify-content: center;
   width: 20rem;
@@ -45,6 +44,8 @@ const S = {
     text-align: center;
 
     background: ${({ theme, $isPurple }) => ($isPurple ? theme.colors.iris1 : theme.colors.gray4)};
+    border: 1px solid ${({ theme }) => theme.colors.gray4};
+    border-bottom: none;
     border-bottom-right-radius: ${({ order }) => (order ? '2rem' : '0')};
     border-bottom-left-radius: ${({ order }) => (order ? '0' : '2rem')};
   `,
