@@ -54,11 +54,19 @@ const RectContainer = ({ children }: Omit<ChipPropType, 'stroke' | 'size' | 'act
     </S.ChipRectContainer>
   );
 };
-const Icon = ({ src, alt }: { src: string; alt?: string }) => {
+
+const Icon = ({ src, alt, width, height }: { src: string; alt?: string; width?: number; height?: number }) => {
   const context = useContext(ChipContext);
   if (!context) throw new Error('Chip 컴포넌트 안에서 사용해주세요');
 
-  return <S.ChipIcon src={src} alt={alt} />;
+  return <S.ChipIcon src={src} alt={alt} $width={width} $height={height} />;
+};
+
+const CloseIcon = ({ width = 20, height = 20 }: { width?: number; height?: number }) => {
+  const context = useContext(ChipContext);
+  if (!context) throw new Error('Chip 컴포넌트 안에서 사용해주세요');
+
+  return <S.CloseIcon width={width} height={height} />;
 };
 
 const Label = ({ children }: { children: ReactNode }) => {
@@ -71,6 +79,7 @@ const Label = ({ children }: { children: ReactNode }) => {
 Chip.RoundContainer = RoundContainer;
 Chip.RectContainer = RectContainer;
 Chip.Icon = Icon;
+Chip.CloseIcon = CloseIcon;
 Chip.Label = Label;
 
 export default Chip;

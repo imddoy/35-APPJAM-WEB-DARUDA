@@ -1,4 +1,5 @@
 import type { Meta, StoryFn } from '@storybook/react';
+import { useState } from 'react';
 
 import Chip from './Chip';
 
@@ -13,12 +14,18 @@ const meta = {
 
 export default meta;
 
-const ChipTemplate: StoryFn<typeof Chip> = (args) => <Chip {...args} />;
+const ChipTemplate: StoryFn<typeof Chip> = (args) => {
+  const [active, setActive] = useState(args.active);
+
+  return <Chip {...args} active={active} onClick={() => setActive((prev) => !prev)} />;
+};
 
 export const Default = ChipTemplate.bind({});
 Default.args = {
   stroke: false,
-  size: 'small',
+  size: 'large',
+  active: false,
+
   children: (
     <Chip.RoundContainer>
       <Chip.Label>칩 컴포넌트</Chip.Label>
@@ -28,31 +35,56 @@ Default.args = {
 
 export const Tool = ChipTemplate.bind({});
 Tool.args = {
-  stroke: false,
-  size: 'small',
+  stroke: true,
+  size: 'medium',
   children: (
     <Chip.RectContainer>
       <Chip.Icon src="https://via.placeholder.com/20" alt="Custom Icon" />
-      <Chip.Label>Tool 이름</Chip.Label>
+      <Chip.Label>ChatGPT</Chip.Label>
     </Chip.RectContainer>
   ),
+};
+Tool.argTypes = {
+  active: { table: { disable: true } },
 };
 
 export const ToolButton = ChipTemplate.bind({});
 ToolButton.args = {
+  stroke: true,
+  size: 'medium',
   children: (
     <Chip.RectContainer>
       <Chip.Icon src="https://via.placeholder.com/20" alt="Custom Icon" />
-      <Chip.Label>Tool 이름</Chip.Label>
-      <Chip.Icon src="https://via.placeholder.com/20" alt="Custom Icon" />
+      <Chip.Label>ChatGPT</Chip.Label>
+      <Chip.CloseIcon width={20} height={20} />
     </Chip.RectContainer>
   ),
+};
+ToolButton.argTypes = {
+  active: { table: { disable: true } },
 };
 
 export const Category = ChipTemplate.bind({});
 Category.args = {
+  stroke: false,
+  size: 'small',
+  active: false,
   children: (
     <Chip.RectContainer>
+      <Chip.Label>카테고리</Chip.Label>
+    </Chip.RectContainer>
+  ),
+};
+
+export const LargeCategory = ChipTemplate.bind({});
+LargeCategory.args = {
+  stroke: false,
+  size: 'large',
+  active: false,
+
+  children: (
+    <Chip.RectContainer>
+      <Chip.Icon src="https://via.placeholder.com/20" alt="Custom Icon" height={1} />
       <Chip.Label>카테고리</Chip.Label>
     </Chip.RectContainer>
   ),
