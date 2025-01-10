@@ -180,3 +180,46 @@
   
   <!-- ⚠️⚠️⚠️⚠️⚠️⚠️ 잠깐 !!!! ⚠️⚠️⚠️⚠️⚠️ -->
   <!-- PR 제목 컨벤션에 맞게 잘 작성했는지, assignee 및 reviewer 지정했는지 다시 한 번 체크하기 !! -->
+<br>
+
+## 📂 프로젝트 구조
+
+```plaintext
+|-- 📁 .github
+|-- 📁 node_modules
+|-- 📁 public
+|-- 📁 src
+|   |-- 📁 apis
+|   |-- 📁 assets
+|   |-- 📁 components
+|   |-- 📁 constants
+|   |-- 📁 hooks
+|   |-- 📁 pages
+|   |   |-- 📁 페이지1
+|   |   |   |-- 📁 apis
+|   |   |   |-- 📁 types
+|   |   |   |-- 📁 assets
+|   |   |   |-- 📁 components
+|   |   |   |-- 📁 constants
+|   |   |   |-- 📁 hooks
+|   |   |-- 📁 페이지2
+|   |-- 📁 styles
+|   |-- 📁 types
+|   |-- 📁 utils
+|   |-- 📁 routes
+|-- .env
+|-- .eslintignore
+|-- .eslintrc.json
+|-- .gitignore
+|-- .prettierignore
+|-- .prettierrc
+|-- .stylelintrc.json
+|-- index.html
+|-- package.json
+|-- svg.d.ts
+|-- README.md
+|-- tsconfig.json
+|-- tsconfig.node.json
+|-- vite.config.ts
+|-- yarn.lock
+```
