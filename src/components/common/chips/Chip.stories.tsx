@@ -61,6 +61,19 @@ ToolButton.args = {
   ),
 };
 
+export const ToolKeyword = ChipTemplate.bind({});
+ToolKeyword.args = {
+  stroke: false,
+  size: 'xsmall',
+  active: false,
+
+  children: (
+    <Chip.RectContainer>
+      <Chip.Label>툴 키워드</Chip.Label>
+    </Chip.RectContainer>
+  ),
+};
+
 export const Category = ChipTemplate.bind({});
 Category.args = {
   stroke: false,

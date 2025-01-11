@@ -6,7 +6,7 @@ import { chipColors } from './chipColors';
 
 export const ChipRoundContainer = styled.button<{
   $stroke?: boolean;
-  $size?: 'small' | 'medium' | 'large';
+  $size?: 'xsmall' | 'small' | 'medium' | 'large';
   $active?: boolean;
 }>`
   display: grid;
@@ -45,7 +45,7 @@ export const ChipRoundContainer = styled.button<{
 
 export const ChipRectContainer = styled.button<{
   $stroke?: boolean;
-  $size?: 'small' | 'medium' | 'large';
+  $size?: 'xsmall' | 'small' | 'medium' | 'large';
   $active?: boolean;
 }>`
   display: grid;
@@ -55,6 +55,17 @@ export const ChipRectContainer = styled.button<{
 
   ${({ $size, theme, $active }) => {
     switch ($size) {
+      case 'xsmall':
+        // tool card keyword Chip
+        return css`
+          height: 2.6rem;
+          padding: 0.4rem 1rem;
+
+          ${theme.fonts.caption_12_b};
+          color: ${$active ? theme.colors[chipColors.roundChip.color] : theme.colors.gray2};
+
+          background-color: ${$active ? theme.colors[chipColors.roundChip.backgroundColor] : theme.colors.white1};
+        `;
       case 'small':
         // 카테고리 Chip (아이콘 X)
         return css`

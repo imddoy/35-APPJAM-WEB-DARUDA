@@ -4,14 +4,14 @@ import * as S from './Chip.styled';
 
 interface ChipContextType {
   stroke?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xsmall' | 'small' | 'medium' | 'large';
   active?: boolean;
   onClick?: () => void;
 }
 
 interface ChipPropType {
   stroke?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xsmall' | 'small' | 'medium' | 'large';
   active?: boolean;
   children: ReactNode;
   onClick?: () => void;
