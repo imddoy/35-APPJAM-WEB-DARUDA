@@ -9,6 +9,9 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  argTypes: {
+    active: { table: { disable: true } },
+  },
   tags: ['autodocs'],
 } satisfies Meta<typeof Chip>;
 
@@ -44,9 +47,6 @@ Tool.args = {
     </Chip.RectContainer>
   ),
 };
-Tool.argTypes = {
-  active: { table: { disable: true } },
-};
 
 export const ToolButton = ChipTemplate.bind({});
 ToolButton.args = {
@@ -59,9 +59,6 @@ ToolButton.args = {
       <Chip.CloseIcon width={20} height={20} />
     </Chip.RectContainer>
   ),
-};
-ToolButton.argTypes = {
-  active: { table: { disable: true } },
 };
 
 export const Category = ChipTemplate.bind({});
