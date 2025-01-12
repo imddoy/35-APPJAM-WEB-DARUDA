@@ -49,10 +49,17 @@ export const Default: Story = {
     (Story, context) => {
       const [isOpen, setIsOpen] = useState(context.args.isOpen);
 
+      const handleOpen = () => {
+        setIsOpen(true);
+      };
+
+      const handleClose = () => {
+        setIsOpen(false);
+      };
       return (
         <div>
-          <button onClick={() => setIsOpen(true)}>모달 열기</button>
-          <Story args={{ ...context.args, isOpen, setIsOpen }} />
+          <button onClick={handleOpen}>모달 열기</button>
+          <Story args={{ ...context.args, isOpen, handleClose }} />
         </div>
       );
     },
@@ -73,12 +80,19 @@ export const DeleteModal: Story = {
     (Story, context) => {
       const [isOpen, setIsOpen] = useState(context.args.isOpen);
 
+      const handleOpen = () => {
+        setIsOpen(true);
+      };
+
+      const handleClose = () => {
+        setIsOpen(false);
+      };
       return (
         <div>
-          <button style={{ border: '1px solid black !important' }} onClick={() => setIsOpen(true)}>
+          <button style={{ border: '1px solid black !important' }} onClick={handleOpen}>
             모달 열기
           </button>
-          <Story args={{ ...context.args, isOpen, setIsOpen }} />
+          <Story args={{ ...context.args, isOpen, handleClose }} />
         </div>
       );
     },
@@ -98,11 +112,17 @@ export const DeleteAccountModal: Story = {
   decorators: [
     (Story, context) => {
       const [isOpen, setIsOpen] = useState(context.args.isOpen);
+      const handleOpen = () => {
+        setIsOpen(true);
+      };
 
+      const handleClose = () => {
+        setIsOpen(false);
+      };
       return (
         <div>
-          <button onClick={() => setIsOpen(true)}>모달 열기</button>
-          <Story args={{ ...context.args, isOpen, setIsOpen }} />
+          <button onClick={handleOpen}>모달 열기</button>
+          <Story args={{ ...context.args, isOpen, handleClose }} />
         </div>
       );
     },

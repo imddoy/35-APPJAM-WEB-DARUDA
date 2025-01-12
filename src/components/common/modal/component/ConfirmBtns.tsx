@@ -4,16 +4,16 @@ interface ConfirmBtnsProps {
   isforDelete: boolean;
   firstBtnContent: string;
   secondBtnContent: string;
-  setIsOpen: (isOpen: boolean) => void;
+  handleClose: () => void;
 }
 
-const ConfirmBtns = ({ isforDelete, firstBtnContent, secondBtnContent, setIsOpen }: ConfirmBtnsProps) => {
+const ConfirmBtns = ({ isforDelete, firstBtnContent, secondBtnContent, handleClose }: ConfirmBtnsProps) => {
   return (
     <S.ModalBtns>
-      <S.ModalBtn $isPurple={false} order={isforDelete ? 0 : 1} onClick={() => setIsOpen(false)}>
+      <S.ModalBtn $isPurple={false} order={isforDelete ? 0 : 1} onClick={handleClose}>
         {firstBtnContent}
       </S.ModalBtn>
-      <S.ModalBtn $isPurple={true} order={isforDelete ? 1 : 0} onClick={() => setIsOpen(false)}>
+      <S.ModalBtn $isPurple={true} order={isforDelete ? 1 : 0} onClick={handleClose}>
         {secondBtnContent}
       </S.ModalBtn>
     </S.ModalBtns>

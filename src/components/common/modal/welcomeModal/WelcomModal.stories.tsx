@@ -30,10 +30,18 @@ export const Default: Story = {
     (Story, context) => {
       const [isOpen, setIsOpen] = useState(context.args.isOpen);
 
+      const handleClose = () => {
+        setIsOpen(false);
+      };
+
+      const handleOepn = () => {
+        setIsOpen(true);
+      };
+
       return (
         <div>
-          <button onClick={() => setIsOpen(true)}>모달 열기</button>
-          <Story args={{ ...context.args, isOpen, setIsOpen }} />
+          <button onClick={handleOepn}>모달 열기</button>
+          <Story args={{ ...context.args, isOpen, handleClose }} />
         </div>
       );
     },
