@@ -39,9 +39,9 @@ export const Default: Story = {
     ModalTitle: '화면을 벗어나시겠어요?',
     ModalContent: '작성중인 화면을 벗어나면 지금까지 입력했던 정보가 사라집니다',
     btnProps: {
-      isforDelete: false,
-      firstBtnContent: '그만두기',
-      secondBtnContent: '마저 작성하기',
+      isPrimaryRight: false,
+      primaryBtnContent: '그만두기',
+      secondaryBtnContent: '마저 작성하기',
     },
     isOpen: false,
   },
@@ -71,9 +71,9 @@ export const DeleteModal: Story = {
     ModalTitle: '선택한 글을 삭제하시겠어요?',
     ModalContent: '삭제된 글은 다시 볼 수 없어요',
     btnProps: {
-      isforDelete: true,
-      firstBtnContent: '삭제할게요',
-      secondBtnContent: '한번더 생각할게요',
+      isPrimaryRight: true,
+      primaryBtnContent: '삭제할게요',
+      secondaryBtnContent: '한번더 생각할게요',
     },
   },
   decorators: [
@@ -92,36 +92,6 @@ export const DeleteModal: Story = {
           <button style={{ border: '1px solid black !important' }} onClick={handleOpen}>
             모달 열기
           </button>
-          <Story args={{ ...context.args, isOpen, handleClose }} />
-        </div>
-      );
-    },
-  ],
-};
-
-export const DeleteAccountModal: Story = {
-  args: {
-    ModalTitle: '정말 다루다의 회원을 탈퇴하시겠어요?',
-    ModalContent: '탈퇴하시면 슬퍼요오오오오오',
-    btnProps: {
-      isforDelete: true,
-      firstBtnContent: '탈퇴할게요',
-      secondBtnContent: '한번더 생각할게요',
-    },
-  },
-  decorators: [
-    (Story, context) => {
-      const [isOpen, setIsOpen] = useState(context.args.isOpen);
-      const handleOpen = () => {
-        setIsOpen(true);
-      };
-
-      const handleClose = () => {
-        setIsOpen(false);
-      };
-      return (
-        <div>
-          <button onClick={handleOpen}>모달 열기</button>
           <Story args={{ ...context.args, isOpen, handleClose }} />
         </div>
       );

@@ -7,9 +7,9 @@ interface ConfirmModalProps {
   ModalTitle: string;
   ModalContent: string;
   btnProps: {
-    isforDelete: boolean;
-    firstBtnContent: string;
-    secondBtnContent: string;
+    isPrimaryRight: boolean;
+    primaryBtnContent: string;
+    secondaryBtnContent: string;
   };
   isOpen: boolean;
   handleClose: () => void;

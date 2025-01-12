@@ -1,20 +1,20 @@
 import styled from '@emotion/styled';
 
 interface ConfirmBtnsProps {
-  isforDelete: boolean;
-  firstBtnContent: string;
-  secondBtnContent: string;
+  isPrimaryRight: boolean;
+  primaryBtnContent: string;
+  secondaryBtnContent: string;
   handleClose: () => void;
 }
 
-const ConfirmBtns = ({ isforDelete, firstBtnContent, secondBtnContent, handleClose }: ConfirmBtnsProps) => {
+const ConfirmBtns = ({ isPrimaryRight, primaryBtnContent, secondaryBtnContent, handleClose }: ConfirmBtnsProps) => {
   return (
     <S.ModalBtns>
-      <S.ModalBtn $isPurple={false} order={isforDelete ? 0 : 1} onClick={handleClose}>
-        {firstBtnContent}
+      <S.ModalBtn $isPrimary={false} order={isPrimaryRight ? 0 : 1} onClick={handleClose}>
+        {primaryBtnContent}
       </S.ModalBtn>
-      <S.ModalBtn $isPurple={true} order={isforDelete ? 1 : 0} onClick={handleClose}>
-        {secondBtnContent}
+      <S.ModalBtn $isPrimary={true} order={isPrimaryRight ? 1 : 0} onClick={handleClose}>
+        {secondaryBtnContent}
       </S.ModalBtn>
     </S.ModalBtns>
   );
@@ -32,8 +32,6 @@ const Button = styled.button`
 
   white-space: nowrap;
   text-align: center;
-
-  border-bottom: none;
 `;
 
 const S = {
@@ -42,13 +40,14 @@ const S = {
     align-items: center;
   `,
 
-  ModalBtn: styled(Button)<{ $isPurple: boolean; order: number }>`
+  ModalBtn: styled(Button)<{ $isPrimary: boolean; order: number }>`
     order: ${({ order }) => order};
 
-    color: ${({ theme, $isPurple }) => ($isPurple ? theme.colors.white1 : theme.colors.black)};
+    color: ${({ theme, $isPrimary }) => ($isPrimary ? theme.colors.white1 : theme.colors.black)};
 
-    background: ${({ theme, $isPurple }) => ($isPurple ? theme.colors.iris1 : theme.colors.gray4)};
+    background: ${({ theme, $isPrimary }) => ($isPrimary ? theme.colors.iris1 : theme.colors.gray4)};
     border: 1px solid ${({ theme }) => theme.colors.gray4};
+    border-bottom: none;
     border-bottom-right-radius: ${({ order }) => (order ? '2rem' : '0')};
     border-bottom-left-radius: ${({ order }) => (order ? '0' : '2rem')};
   `,
