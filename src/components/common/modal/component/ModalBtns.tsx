@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
 
-interface ConfirmBtnsProps {
-  isPrimaryRight: boolean;
-  primaryBtnContent: string;
-  secondaryBtnContent: string;
+interface ModalBtnsProps {
+  isPrimaryRight?: boolean;
+  primaryBtnContent?: string;
+  secondaryBtnContent?: string;
+  singleBtnContent?: string;
   handleClose: () => void;
 }
 
-const ConfirmBtns = ({ isPrimaryRight, primaryBtnContent, secondaryBtnContent, handleClose }: ConfirmBtnsProps) => {
+const DobbleBtns = ({ isPrimaryRight, primaryBtnContent, secondaryBtnContent, handleClose }: ModalBtnsProps) => {
   return (
     <S.ModalBtns>
       <S.ModalBtn $isPrimary={false} order={isPrimaryRight ? 0 : 1} onClick={handleClose}>
@@ -20,7 +21,11 @@ const ConfirmBtns = ({ isPrimaryRight, primaryBtnContent, secondaryBtnContent, h
   );
 };
 
-export default ConfirmBtns;
+const SingleBtn = ({ singleBtnContent, handleClose }: ModalBtnsProps) => {
+  return <S.SingleBtn onClick={handleClose}>{singleBtnContent}</S.SingleBtn>;
+};
+
+export { DobbleBtns, SingleBtn };
 
 const Button = styled.button`
   ${({ theme }) => theme.fonts.body_16_b};
@@ -51,5 +56,16 @@ const S = {
     border-bottom: none;
     border-bottom-right-radius: ${({ order }) => (order ? '2rem' : '0')};
     border-bottom-left-radius: ${({ order }) => (order ? '0' : '2rem')};
+  `,
+
+  SingleBtn: styled(Button)`
+    gap: 1rem;
+    padding: 1.6rem 5.4rem;
+
+    ${({ theme }) => theme.fonts.body_20_b};
+    color: ${({ theme }) => theme.colors.white1};
+
+    background: ${({ theme }) => theme.colors.iris1};
+    border-radius: 3.2rem;
   `,
 };

@@ -4,16 +4,16 @@ import ReactDOM from 'react-dom';
 
 interface ModalWrapperProps {
   children: ReactNode;
-  $isforWelcome?: boolean;
+  $isSingleModal: boolean;
   isOpen: boolean;
 }
 
-const ModalWrapper = ({ children, $isforWelcome = false, isOpen }: ModalWrapperProps) => {
+const ModalWrapper = ({ children, isOpen, $isSingleModal }: ModalWrapperProps) => {
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
     <S.ModalWrapper>
-      <S.ModalContent $isforWelcome={$isforWelcome}>{children}</S.ModalContent>
+      <S.ModalContent $isSingleModal={$isSingleModal}>{children}</S.ModalContent>
     </S.ModalWrapper>,
 
     document.getElementById('portal-root') as HTMLElement,
@@ -37,14 +37,15 @@ const S = {
     background: rgb(70 70 70 / 60%);
     backdrop-filter: blur(0.6rem);
   `,
-  ModalContent: styled.div<{ $isforWelcome: boolean }>`
+  ModalContent: styled.div<{ $isSingleModal: boolean }>`
     display: flex;
     flex-direction: column;
+    gap: ${({ $isSingleModal }) => $isSingleModal && '3.4rem'};
     align-items: center;
     justify-content: flex-end;
     width: 40rem;
     height: auto;
-    padding: ${({ $isforWelcome }) => ($isforWelcome ? '3.2rem 4.8rem' : '3.1rem 0 0 0')};
+    padding: ${({ $isSingleModal }) => ($isSingleModal ? '4.4rem 4.8rem 2.8rem 4.8rem' : '3.1rem 0 0 0')};
 
     background: ${({ theme }) => theme.colors.white1};
     box-shadow: 0 0 12px 0 rgb(211 211 211 / 63%);

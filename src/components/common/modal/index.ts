@@ -1,4 +1,3 @@
-import ConfirmModal from './confirmModal/ConfirmModal';
-import WelcomeModal from './welcomeModal/WelcomeModal';
+import AlterModal from './AlertModal';
 
-export { ConfirmModal, WelcomeModal };
+export { AlterModal };
