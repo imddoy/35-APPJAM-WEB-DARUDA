@@ -47,7 +47,8 @@ const S = {
     padding: ${({ $isforWelcome }) => ($isforWelcome ? '3.2rem 4.8rem' : '3.1rem 0 0 0')};
 
     background: ${({ theme }) => theme.colors.white1};
-    border: 1px solid ${({ theme }) => theme.colors.gray4};
+    box-shadow: 0 0 12px 0 rgb(211 211 211 / 63%);
+    border: 1px solid ${({ theme }) => theme.colors.gray3};
     border-radius: 2rem;
   `,
 };
