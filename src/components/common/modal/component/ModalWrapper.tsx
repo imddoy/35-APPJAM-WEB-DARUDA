@@ -48,7 +48,7 @@ const S = {
     padding: ${({ $isSingleModal }) => ($isSingleModal ? '4.4rem 4.8rem 2.8rem 4.8rem' : '3.1rem 0 0 0')};
 
     background: ${({ theme }) => theme.colors.white1};
-    box-shadow: 0 0 12px 0 rgb(211 211 211 / 63%);
+    box-shadow: 0 0 12px 0 ${({ theme }) => theme.colors.shadow1};
     border: 1px solid ${({ theme }) => theme.colors.gray3};
     border-radius: 2rem;
   `,

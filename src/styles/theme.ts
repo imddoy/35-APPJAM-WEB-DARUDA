@@ -17,6 +17,7 @@ const colors = {
   gray2: '#848688',
   gray3: '#CCCCCC',
   gray4: '#F0F2F2',
+  shadow1: 'rgba(211, 211, 211, 0.63)',
 };
 
 const fonts = {
