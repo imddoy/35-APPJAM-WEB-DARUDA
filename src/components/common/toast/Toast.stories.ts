@@ -33,17 +33,3 @@ export const BookMark: Story = {
     isVisible: true,
   },
 };
-
-export const Delete: Story = {
-  args: {
-    children: '삭제가 완료되었어요.',
-    isVisible: true,
-  },
-};
-
-export const UpdateInfo: Story = {
-  args: {
-    children: '기본 정보 수정이 완료되었어요.',
-    isVisible: true,
-  },
-};
