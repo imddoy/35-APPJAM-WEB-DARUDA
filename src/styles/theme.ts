@@ -16,6 +16,9 @@ const colors = {
   gray2: '#848688',
   gray3: '#CCCCCC',
   gray4: '#F0F2F2',
+  iris_hover: '#595AE8',
+  iris_click: '#4243B6',
+  shadow1: 'rgba(211, 211, 211, 0.63)',
 };
 
 const fonts = {
@@ -82,8 +85,8 @@ const fonts = {
   body_16_m: css`
     font-weight: 500;
     font-size: 1.6rem;
-    font-family: 'AppleSDGothicNeoB00', sans-serif;
-    line-height: 3.2rem;
+    font-family: 'AppleSDGothicNeoM00', sans-serif;
+    line-height: 2.8rem;
   `,
   caption_14_m: css`
     font-weight: 500;
