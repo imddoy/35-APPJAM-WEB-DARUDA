@@ -1,4 +1,4 @@
-import S from './Toast.styled';
+import * as S from './Toast.styled';
 
 type ToastProps = {
   isVisible: boolean;

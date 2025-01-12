@@ -1,25 +1,21 @@
 import styled from '@emotion/styled';
 
-const S = {
-  ToastWrapper: styled.section<{ $isVisible: boolean }>`
-    display: ${({ $isVisible }) => ($isVisible ? 'inline-flex' : 'none')};
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-    padding: 2.8rem 2rem;
+export const ToastWrapper = styled.section<{ $isVisible: boolean }>`
+  display: ${({ $isVisible }) => ($isVisible ? 'inline-flex' : 'none')};
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2.8rem 2rem;
 
-    background-color: ${({ theme }) => theme.colors.black_toast};
-    backdrop-filter: blur(1.2rem);
-    border-radius: 1.2rem;
-  `,
+  background-color: ${({ theme }) => theme.colors.black_toast};
+  backdrop-filter: blur(1.2rem);
+  border-radius: 1.2rem;
+`;
 
-  ToastMessage: styled.div`
-    width: 44.7rem;
+export const ToastMessage = styled.div`
+  width: 44.7rem;
 
-    color: ${({ theme }) => theme.colors.white1};
-    text-align: center;
-    ${({ theme }) => theme.fonts.body_20_b};
-  `,
-};
-
-export default S;
+  color: ${({ theme }) => theme.colors.white1};
+  text-align: center;
+  ${({ theme }) => theme.fonts.body_20_b};
+`;
