@@ -16,9 +16,29 @@ const meta: Meta<typeof AlterModal> = {
       control: { type: 'text' },
       description: '팝업 모달의 제목입니다.',
     },
+    isSingleModal: {
+      control: { type: 'boolean' },
+      description: '모달 유형 (단일 버튼/더블 버튼)을 결정합니다.',
+    },
     singleBtnContent: {
       control: { type: 'text' },
-      description: '모달 버튼의 텍스트입니다.',
+      description: '모달 버튼의 텍스트입니다. (단일버튼일 경우)',
+    },
+    modalContent: {
+      control: { type: 'text' },
+      description: '모달의 본문 내용입니다. (더블버튼일 경우)',
+    },
+    DobblebtnProps: {
+      control: { type: 'object' },
+      description: '두 버튼의 속성을 정의합니다. (더블버튼일 경우)',
+    },
+    isOpen: {
+      control: { type: 'boolean' },
+      description: '모달이 열려있는지 여부입니다.',
+    },
+    handleClose: {
+      action: 'closed',
+      description: '모달을 닫는 함수입니다.',
     },
   },
 };
