@@ -11,7 +11,7 @@ export const WriteContentBtnContainer = styled.button<WriteContentBtnProps>`
   padding: 1.6rem 3rem;
 
   color: ${({ theme }) => theme.colors.white1};
-  font: ${({ theme }) => theme.fonts.body_20_b};
+  ${({ theme }) => theme.fonts.body_20_b};
 
   background-color: ${({ theme }) => theme.colors.iris1};
   box-shadow: 0 0 12px 0 ${({ theme }) => theme.colors.shadow1};

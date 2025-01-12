@@ -1,14 +1,15 @@
 import styled from '@emotion/styled';
 
 export const BookmarkContainer = styled.div<{ isActive: boolean }>`
-  display: inline-flex;
+  display: flex;
   gap: 0.6rem;
   align-items: center;
   justify-content: center;
+  width: 12rem;
   padding: 1rem 1.8rem;
 
   color: ${({ theme, isActive }) => (isActive ? theme.colors.white1 : theme.colors.gray1)};
-  font: ${({ theme }) => theme.fonts.body_16_m};
+  ${({ theme }) => theme.fonts.body_16_m};
 
   background-color: ${({ theme, isActive }) => (isActive ? theme.colors.iris1 : theme.colors.white1)};
   cursor: pointer;

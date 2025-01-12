@@ -8,7 +8,7 @@ export const ShareContainer = styled.div`
   padding: 1rem 1.8rem;
 
   color: ${({ theme }) => theme.colors.gray1};
-  font: ${({ theme }) => theme.fonts.body_16_m};
+  ${({ theme }) => theme.fonts.body_16_m};
 
   background-color: ${({ theme }) => theme.colors.white1};
   cursor: pointer;

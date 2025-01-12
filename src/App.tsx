@@ -3,7 +3,7 @@
 // }
 
 // export default App;
-import BookmarkBtn from './components/common/communityBtn/cmting/Cmting';
+import BookmarkBtn from './components/common/communityBtn/bookMark/BookMark';
 
 const App = () => {
   return (

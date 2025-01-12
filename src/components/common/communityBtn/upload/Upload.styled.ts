@@ -11,7 +11,7 @@ export const UploadBtnContainer = styled.button<UploadBtnProps>`
   padding: 0.8rem 3.2rem 0.8rem 2rem;
 
   color: ${({ variant, theme }) => (variant === 'default' ? theme.colors.white1 : theme.colors.white1)};
-  font: ${({ theme }) => theme.fonts.body_20_b};
+  ${({ theme }) => theme.fonts.body_20_b};
 
   background-color: ${({ variant, theme }) => (variant === 'default' ? theme.colors.gray2 : theme.colors.iris1)};
   cursor: pointer;
