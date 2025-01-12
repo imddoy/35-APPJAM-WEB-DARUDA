@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 
-export const ToastWrapper = styled.section<{ $isVisible: boolean }>`
+export const ToastWrapper = styled.section<{ $isVisible: boolean; $isWarning: boolean }>`
   display: ${({ $isVisible }) => ($isVisible ? 'inline-flex' : 'none')};
   gap: 1rem;
   align-items: center;
   justify-content: center;
   padding: 2.8rem 2rem;
 
-  background-color: ${({ theme }) => theme.colors.black_toast};
+  background-color: ${({ theme, $isWarning }) => ($isWarning ? theme.colors.orange1 : theme.colors.black_toast)};
   backdrop-filter: blur(1.2rem);
   border-radius: 1.2rem;
 `;
