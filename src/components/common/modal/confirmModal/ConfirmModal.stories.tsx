@@ -1,3 +1,4 @@
+import { ImgModalexit, ImgModalexit2 } from '@assets/svgs';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
@@ -44,6 +45,7 @@ export const Default: Story = {
       secondaryBtnContent: '마저 작성하기',
     },
     isOpen: false,
+    ImgPopupModal: ImgModalexit,
   },
   decorators: [
     (Story, context) => {
@@ -75,6 +77,7 @@ export const DeleteModal: Story = {
       primaryBtnContent: '삭제할게요',
       secondaryBtnContent: '한번더 생각할게요',
     },
+    ImgPopupModal: ImgModalexit2,
   },
   decorators: [
     (Story, context) => {

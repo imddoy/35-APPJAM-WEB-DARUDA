@@ -31,6 +31,7 @@ const S = {
     justify-content: center;
     width: 100vw;
     height: 100vh;
+    padding-top: 3.1rem;
     overflow: auto;
 
     background: rgb(70 70 70 / 60%);
@@ -39,11 +40,10 @@ const S = {
   ModalContent: styled.div<{ $isforWelcome: boolean }>`
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
     align-items: center;
     justify-content: flex-end;
     width: 40rem;
-    height: 26.8rem;
+    height: auto;
     padding: ${({ $isforWelcome }) => ($isforWelcome ? '3.2rem 4.8rem' : '3.1rem 0 0 0')};
 
     background: ${({ theme }) => theme.colors.white1};

@@ -1,1 +1,2 @@
-export { default as ImgPopupmodal84 } from './ImgPopupmodal84';
+export { default as ImgModalexit } from './ImgModalexit';
+export { default as ImgModalexit2 } from './ImgModalexit2';

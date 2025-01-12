@@ -1,4 +1,4 @@
-import { ImgPopupmodal84 } from '@assets/svgs';
+import { SVGProps, FunctionComponent } from 'react';
 
 import { ModalWrapper, ConfirmBtns } from '../component';
 import S from '../Modal.styled';
@@ -13,13 +13,21 @@ interface ConfirmModalProps {
   };
   isOpen: boolean;
   handleClose: () => void;
+  ImgPopupModal: FunctionComponent<SVGProps<SVGSVGElement>>;
 }
 
-const ConfirmModal = ({ ModalTitle, ModalContent, btnProps, isOpen, handleClose }: ConfirmModalProps) => {
+const ConfirmModal = ({
+  ModalTitle,
+  ModalContent,
+  btnProps,
+  isOpen,
+  handleClose,
+  ImgPopupModal,
+}: ConfirmModalProps) => {
   return (
     <ModalWrapper isOpen={isOpen}>
       <S.ModalContainer>
-        <ImgPopupmodal84 />
+        <ImgPopupModal />
         <S.ModalTitle>{ModalTitle}</S.ModalTitle>
         <S.ModalContent>{ModalContent}</S.ModalContent>
         <ConfirmBtns {...btnProps} handleClose={handleClose} />

@@ -17,6 +17,8 @@ const S = {
 
   ModalContent: styled.p`
     ${({ theme }) => theme.fonts.caption_12_r};
+    padding-bottom: 2.5rem;
+
     color: ${({ theme }) => theme.colors.gray2};
     text-align: center;
   `,
