@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+<img alt="image" src="https://github.com/user-attachments/assets/e3d3d985-6ac6-40fe-a061-5cb8d86a189f">
 
 # <img src="https://github.com/user-attachments/assets/cadac378-353e-40a8-8645-2140114f6e0b" alt="Group 2085665014" width="27" /> 35-APPJAM-WEB-DARUDA
 **35기 AND SOPT 앱잼 웹 부문 - 다루다 레포지토리**
@@ -71,6 +71,76 @@
   
 ---
 
+## **🌿 Branch Convention**
+### **Branch Naming 규칙**
+- **형식**: `<prefix>/<#issue 번호>/<상세기능>`
+- **Prefix 목록**:
+  - `Init/`: 초기 세팅 (패키지 설치, eslint/prettier 설정 등)
+  - `Feat/`: 새로운 기능 개발
+  - `Fix/`: 버그 수정
+  - `Docs/`: 문서 추가, 수정, 삭제
+  - `Style/`: 코드 formatting, 세미콜론 누락 등 코드 자체 변경이 없는 작업
+  - `Refactor/`: 코드 리팩토링
+  - `Test/`: 테스트 코드 작성 및 리팩토링
+  - `Chore/`: 기타 작업 (패키지 매니저 수정, `.gitignore` 변경 등)
+  - `Build/`: 빌드 관련 파일 수정
+  - `Design/`: CSS 등 사용자 UI 디자인 변경
+  - `Comment/`: 주석 추가 및 변경
+  - `Rename/`: 파일 또는 폴더 이름 변경 및 이동
+  - `Remove/`: 파일 삭제 작업만 수행한 경우
+  - `Hotfix/`: 긴급하게 치명적인 버그 수정
+- **예시**:
+  - `Feat/#12/logInPage`
+  - `Fix/#25/headerBug`
+
+---
+
+## **📋 Issue Convention**
+### **Issue Title 규칙**
+- **형식**: `[태그] 제목`
+- **태그 목록**:
+  - `Init`: 초기 세팅 (패키지 설치, eslint/prettier 설정 등)
+  - `Feat`: 새로운 기능 개발
+  - `Fix`: 버그 수정
+  - `Docs`: 문서 추가, 수정, 삭제
+  - `Style`: 코드 formatting, 세미콜론 누락 등 코드 자체 변경이 없는 작업
+  - `Refactor`: 코드 리팩토링
+  - `Test`: 테스트 코드 작성 및 리팩토링
+  - `Chore`: 기타 작업 (패키지 매니저 수정, `.gitignore` 변경 등)
+  - `Build`: 빌드 관련 파일 수정
+  - `Design`: CSS 등 사용자 UI 디자인 변경
+  - `Comment`: 주석 추가 및 변경
+  - `Rename`: 파일 또는 폴더 이름 변경 및 이동
+  - `Remove`: 파일 삭제 작업만 수행한 경우
+  - `Hotfix`: 긴급하게 치명적인 버그 수정
+- **예시**:
+  - `[Feat] Tool List Card 공통 컴포넌트 구현`
+  - `[Init] ESLint, Prettier, StyleLint 초기세팅`
+
+### **Issue Template**
+- **제목**: `[Feat] 간단한 요약`
+- **내용**:
+  ```markdown
+  ## 📄 작업할 내용
+  - 작업할 기능에 대한 설명을 작성해주세요.
+
+  ## ✅ 작업할 내용
+  - 작업할 내용을 최대한 세분화 하여 작성해주세요.
+  - [ ] todo
+  - [ ] todo
+
+  ## 🎨 뷰 미리보기
+  - 작업하고자 하는 기능의 뷰를 첨부해주세요.
+- **제목**: `[Bug] 간단한 요약`
+- **내용**:
+  ```markdown
+  ## 🐛 버그 설명
+  - 버그가 언제, 어떻게 발생했는지 작성해주세요.
+
+  ## 👍 정상 동작
+  - 정상적인 동작에 대해 설명해주세요.
+ ---
+## **🔄 Pull Request (PR) Convention**
 
 ### **PR Title 규칙**
 - **형식**: `[태그] 제목`
