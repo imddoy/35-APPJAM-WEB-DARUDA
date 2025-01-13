@@ -28,7 +28,7 @@ const SingleBtn = ({ singleBtnContent, handleClose }: ModalBtnsProps) => {
 export { DobbleBtns, SingleBtn };
 
 const Button = styled.button`
-  ${({ theme }) => theme.fonts.body_16_b};
+  ${({ theme }) => theme.fonts.body_16_b_1};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,8 +50,8 @@ const S = {
 
     color: ${({ theme, $isPrimary }) => ($isPrimary ? theme.colors.white1 : theme.colors.black)};
 
-    background: ${({ theme, $isPrimary }) => ($isPrimary ? theme.colors.iris1 : theme.colors.gray4)};
-    border: 1px solid ${({ theme }) => theme.colors.gray3};
+    background: ${({ theme, $isPrimary }) => ($isPrimary ? theme.colors.iris1 : theme.colors.gray6)};
+    border: 1px solid ${({ theme }) => theme.colors.gray4};
     border-top: none;
     border-bottom: none;
     border-bottom-right-radius: ${({ order }) => (order ? '2rem' : '0')};

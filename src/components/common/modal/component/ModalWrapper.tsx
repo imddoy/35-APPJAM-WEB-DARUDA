@@ -49,7 +49,7 @@ const S = {
 
     background: ${({ theme }) => theme.colors.white1};
     box-shadow: 0 0 12px 0 ${({ theme }) => theme.colors.shadow1};
-    border: 1px solid ${({ theme }) => theme.colors.gray3};
+    border: 1px solid ${({ theme }) => theme.colors.gray4};
     border-radius: 2rem;
   `,
 };
