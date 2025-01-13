@@ -1,5 +1,12 @@
+import * as S from './Community.style';
+import Banner from './components/banner/Banner';
+
 const Community = () => {
-  return <div>Community</div>;
+  return (
+    <S.CoummunityWrapper>
+      <Banner />
+    </S.CoummunityWrapper>
+  );
 };
 
 export default Community;
