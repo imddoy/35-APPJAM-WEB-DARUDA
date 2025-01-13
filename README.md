@@ -71,47 +71,85 @@
   
 ---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+### **PR Title 규칙**
+- **형식**: `[태그] 제목`
+- **태그 목록**:
+  - `Feat`: 새로운 기능 개발
+  - `Fix`: 버그 수정
+  - `Docs`: 문서 추가/수정
+  - `Style`: 코드 스타일 변경
+  - `Refactor`: 코드 리팩토링
+  - `Test`: 테스트 코드 작성/수정
+  - `Chore`: 기타 작업
+  - `Build`: 빌드 관련 작업
+  - `Design`: UI/디자인 작업
+  - `Comment`: 주석 추가/수정
+  - `Rename`: 파일/폴더 이름 변경
+  - `Remove`: 파일 삭제
+  - `Hotfix`: 긴급한 버그 수정
+- **예시**:
+  - `[Feat] Tool List Card 공통 컴포넌트 구현`
+  - `[Fix] Header 컴포넌트의 버그 수정`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### **PR Template**
+- **PR 작성 규칙**:
+  ```markdown
+  ## 📑 이슈 번호
+  <!-- 이슈 번호를 작성해주세요 ex) #11 -->
+  - close #
 
-- Configure the top-level `parserOptions` property like this:
+  ## ✨️ 작업 내용
+  <!-- 작업 내용을 간략히 설명해주세요 -->
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+  ## 💙 코멘트
+  <!-- 리뷰어가 중점적으로 봐주었으면 하는 부분이나 궁금한 점을 자유롭게 남겨주세요! -->
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+  ## 📸 구현 결과
+  <!-- 구현한 기능이 모두 결과물에 포함되도록 자유롭게 첨부해주세요 (스크린샷, gif, 동영상, 배포링크 등) -->
+  
+  <!-- ⚠️⚠️⚠️⚠️⚠️⚠️ 잠깐 !!!! ⚠️⚠️⚠️⚠️⚠️ -->
+  <!-- PR 제목 컨벤션에 맞게 잘 작성했는지, assignee 및 reviewer 지정했는지 다시 한 번 체크하기 !! -->
+<br>
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 📂 프로젝트 구조
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```plaintext
+|-- 📁 .github
+|-- 📁 node_modules
+|-- 📁 public
+|-- 📁 src
+|   |-- 📁 apis
+|   |-- 📁 assets
+|   |-- 📁 components
+|   |-- 📁 constants
+|   |-- 📁 hooks
+|   |-- 📁 pages
+|   |   |-- 📁 페이지1
+|   |   |   |-- 📁 apis
+|   |   |   |-- 📁 types
+|   |   |   |-- 📁 assets
+|   |   |   |-- 📁 components
+|   |   |   |-- 📁 constants
+|   |   |   |-- 📁 hooks
+|   |   |-- 📁 페이지2
+|   |-- 📁 styles
+|   |-- 📁 types
+|   |-- 📁 utils
+|   |-- 📁 routes
+|-- .env
+|-- .eslintignore
+|-- .eslintrc.json
+|-- .gitignore
+|-- .prettierignore
+|-- .prettierrc
+|-- .stylelintrc.json
+|-- index.html
+|-- package.json
+|-- svg.d.ts
+|-- README.md
+|-- tsconfig.json
+|-- tsconfig.node.json
+|-- vite.config.ts
+|-- yarn.lock
 ```
