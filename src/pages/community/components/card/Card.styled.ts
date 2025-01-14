@@ -1,0 +1,78 @@
+import styled from '@emotion/styled';
+
+export const CardWrapper = styled.li`
+  background: ${({ theme }) => theme.colors.white1};
+  border: 1px solid ${({ theme }) => theme.colors.gray6};
+  border-radius: 1.6rem;
+`;
+
+export const CardLayout = styled.section`
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-end;
+  width: 100%;
+  padding: 3rem 4.8rem 1.6rem;
+`;
+export const CardTopContent = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: flex-start;
+  align-self: stretch;
+  width: 100%;
+
+  header {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+  }
+`;
+
+export const MetaInfo = styled.span`
+  ${({ theme }) => theme.fonts.caption_12_r};
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+
+  color: ${({ theme }) => theme.colors.gray2};
+`;
+
+export const CardDivider = styled.div`
+  flex-shrink: 0;
+  width: 670px;
+  height: 0.1rem;
+
+  background-color: ${({ theme }) => theme.colors.gray4};
+
+  stroke: ${({ theme }) => theme.colors.gray4};
+`;
+
+export const CardBottomBar = styled.section`
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  justify-content: space-between;
+`;
+
+export const CardTitleItem = styled.h1`
+  ${({ theme }) => theme.fonts.body_20_b};
+  color: ${({ theme }) => theme.colors.black};
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+`;
+
+export const CardTextItem = styled.h1`
+  ${({ theme }) => theme.fonts.caption_14_m};
+  color: ${({ theme }) => theme.colors.gray1};
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+`;
+
+export const BottomBarLeft = styled.span`
+  display: flex;
+  gap: 19px;
+  align-items: center;
+`;
