@@ -4,7 +4,7 @@ export const CommunityWrapper = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1.6rem 16rem;
+  padding: 1.6rem 17rem;
 `;
 
 export const CardList = styled.ul`
