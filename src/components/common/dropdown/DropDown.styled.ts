@@ -17,7 +17,8 @@ export const DropDownToggleBtn = styled.div`
 `;
 
 export const DropDownWrapper = styled.ul`
-  position: abolsute;
+  position: absolute;
+  top: 4.5rem;
   z-index: 1;
   width: min-content;
 

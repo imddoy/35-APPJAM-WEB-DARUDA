@@ -44,7 +44,7 @@ const ToggleBtn = ({ children }: { children: ReactNode }) => {
 const Content = ({ children }: { children: ReactNode }) => {
   const { isOpen } = useComponentContext(DropDownContext, 'DropDown');
 
-  if (!isOpen) return;
+  if (!isOpen) return null;
 
   return <S.DropDownWrapper>{children}</S.DropDownWrapper>;
 };
