@@ -19,6 +19,8 @@ const colors = {
   gray4: '#CCCCCC',
   gray5: '#EBEBEB',
   gray6: '#F0F2F2',
+  iris_hover: '#595AE8',
+  iris_click: '#4243B6',
   shadow1: 'rgba(211, 211, 211, 0.63)',
 };
 
@@ -42,6 +44,11 @@ const fonts = {
     font-size: 2.8rem;
     font-family: 'AppleSDGothicNeoM00', sans-serif;
     line-height: 5.6rem;
+  `,
+  head_28_b: css`
+    font-size: 2.8rem;
+    font-family: 'AppleSDGothicNeoB00', sans-serif;
+    line-height: 3.2rem;
   `,
   body_24_b: css`
     font-size: 2.4rem;
@@ -81,7 +88,7 @@ const fonts = {
   body_16_m: css`
     font-size: 1.6rem;
     font-family: 'AppleSDGothicNeoB00', sans-serif;
-    line-height: 3.2rem;
+    line-height: 2.8rem;
   `,
   caption_14_m: css`
     font-size: 1.4rem;
@@ -98,6 +105,7 @@ const fonts = {
     font-family: 'AppleSDGothicNeoR00', sans-serif;
     line-height: 1.6rem;
   `,
+  // Todo: 디자인 폰트 작업 다 끝나면 그때 수정하기 -> 일단 임의로 만든 값
   caption_8_b: css`
     font-size: 0.8rem;
     font-family: 'AppleSDGothicNeoB00', sans-serif;
