@@ -14,6 +14,7 @@ export const CardLayout = styled.section`
   width: 100%;
   padding: 3rem 4.8rem 1.6rem;
 `;
+
 export const CardTopContent = styled.section`
   display: flex;
   flex-direction: column;
@@ -40,7 +41,7 @@ export const MetaInfo = styled.span`
 
 export const CardDivider = styled.div`
   flex-shrink: 0;
-  width: 670px;
+  width: 67rem;
   height: 0.1rem;
 
   background-color: ${({ theme }) => theme.colors.gray4};
@@ -73,6 +74,72 @@ export const CardTextItem = styled.h1`
 
 export const BottomBarLeft = styled.span`
   display: flex;
-  gap: 19px;
+  gap: 1.9rem;
   align-items: center;
+`;
+export const ImageGrid = styled.div<{ $imageCount: number }>`
+  display: grid;
+  grid-template-rows: ${({ $imageCount }) => {
+    switch ($imageCount) {
+      case 4:
+        return 'repeat(2, 1fr)';
+      case 3:
+        return '1fr';
+      case 2:
+        return '1fr';
+      case 1:
+        return '1fr';
+      default:
+        return 'none';
+    }
+  }};
+  grid-template-columns: ${({ $imageCount }) => {
+    switch ($imageCount) {
+      case 4:
+        return 'repeat(2, 1fr)';
+      case 3:
+        return 'repeat(3, 1fr)';
+      case 2:
+        return 'repeat(2, 1fr)';
+      case 1:
+        return '1fr';
+      default:
+        return 'none';
+    }
+  }};
+  gap: 0.8rem;
+  width: 100%;
+
+  ${({ $imageCount }) =>
+    $imageCount === 5 &&
+    `
+    & > *:nth-child(1) {
+      grid-column: 1 / 4; 
+      grid-row: 1 / 2; 
+    }
+
+    & > *:nth-child(2) {
+      grid-column:  4 / 7;  
+      grid-row: 1 / 2; 
+    }
+
+    & > *:nth-child(3) {
+      grid-column: 1 / 3;  
+      grid-row: 2 / 3;  
+    }
+
+    & > *:nth-child(4) {
+      grid-column: 3 / 5;  
+      grid-row: 2 / 3; 
+    }
+
+    & > *:nth-child(5) {
+      grid-column: 5 / 7;
+      grid-row: 2 / 3;  
+    }
+  `}
+
+  img {
+    width: 100%;
+  }
 `;

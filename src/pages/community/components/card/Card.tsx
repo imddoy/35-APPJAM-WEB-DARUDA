@@ -23,6 +23,7 @@ interface CardDataProp {
 
 const Card = ({ post }: CardDataProp) => {
   const { toolName, toolLogo, title, content, images, updatedAt, nickName, commentCount } = post;
+
   return (
     <S.CardWrapper>
       <S.CardLayout>
@@ -42,6 +43,11 @@ const Card = ({ post }: CardDataProp) => {
           </header>
           <S.CardTitleItem>{title}</S.CardTitleItem>
           <S.CardTextItem>{formatContent(content, images.length)}</S.CardTextItem>
+          <S.ImageGrid $imageCount={images.length}>
+            {images.map((image, i) => (
+              <img key={i} src={image} alt={`${i}`} />
+            ))}
+          </S.ImageGrid>
         </S.CardTopContent>
         <S.CardDivider />
         <S.CardBottomBar>
