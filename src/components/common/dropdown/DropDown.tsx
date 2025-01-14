@@ -38,7 +38,11 @@ const ToggleBtn = ({ children }: { children: ReactNode }) => {
     setIsOpen(!isOpen);
   };
 
-  return <S.DropDownToggleBtn onClick={handleToggle}>{children}</S.DropDownToggleBtn>;
+  return (
+    <S.DropDownToggleBtn onClick={handleToggle} $isOpen={isOpen}>
+      {children}
+    </S.DropDownToggleBtn>
+  );
 };
 
 const Content = ({ children }: { children: ReactNode }) => {
