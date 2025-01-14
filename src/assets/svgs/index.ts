@@ -5,6 +5,7 @@ export { default as IcArrowDownBlack24 } from './IcArrowDownBlack24';
 export { default as IcBookmark } from './IcBookmark';
 export { default as IcBookmark32 } from './IcBookmark32';
 export { default as IcBookmarkGray24Dact } from './IcBookmarkGray24Dact';
+export { default as IcChevron } from './IcChevron';
 export { default as IcCmtimgGray24 } from './IcCmtimgGray24';
 export { default as IcComment } from './IcComment';
 export { default as IcCommentGray24 } from './IcCommentGray24';
