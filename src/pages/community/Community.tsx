@@ -1,11 +1,18 @@
 import * as S from './Community.style';
 import Banner from './components/banner/Banner';
+import Card from './components/card/Card';
+import { POST_DATA } from './mocks';
 
 const Community = () => {
   return (
-    <S.CoummunityWrapper>
+    <S.CommunityWrapper>
       <Banner />
-    </S.CoummunityWrapper>
+      <S.CardList>
+        {POST_DATA.map((post) => (
+          <Card key={post.boardId} post={post} />
+        ))}
+      </S.CardList>
+    </S.CommunityWrapper>
   );
 };
 
