@@ -1,16 +1,19 @@
-import { ImgBanner } from '@assets/svgs';
 import styled from '@emotion/styled';
 
 export const BannerWrapper = styled.section`
   display: flex;
-  flex-shrink: 0;
-  justify-content: space-between;
-  width: 104.6rem;
-  height: 25.8rem;
+  justify-content: flex-start;
+  width: 100%;
+  height: 19.9rem;
 
-  background: linear-gradient(255deg, rgb(201 201 255 / 63%) 2.79%, rgb(108 109 225 / 63%) 105.73%), #fff;
-  border-radius: 1.6rem;
+  background: ${({ theme }) => theme.colors.orange1};
 `;
+
+export const MainImgBanner = styled.img`
+  width: 51.4rem;
+  margin: 2.6rem 0 0 18.6rem;
+`;
+
 export const BannerContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,12 +23,8 @@ export const BannerContainer = styled.div`
   padding: 5.2rem 0 5.2rem 6.4rem;
 `;
 export const BannerTitle = styled.h1`
-  ${({ theme }) => theme.fonts.head_32_b};
-  color: ${({ theme }) => theme.colors.black};
-`;
-
-export const MainImgBanner = styled(ImgBanner)`
-  margin: 2.6rem 3.2rem 2.6rem 10rem;
+  ${({ theme }) => theme.fonts.body_20_b};
+  color: ${({ theme }) => theme.colors.white1};
 `;
 
 export const ModalChipsContainer = styled.ul`
@@ -38,13 +37,13 @@ export const ModalChip = styled.li`
   gap: 0.2rem;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem 2rem;
+  padding: 0.4rem 1.2rem;
 
   background: ${({ theme }) => theme.colors.white1};
-  border-radius: 3rem;
+  border-radius: 2.8rem;
 `;
 
 export const ModalChipText = styled.p`
-  ${({ theme }) => theme.fonts.body_16_b_1};
-  color: ${({ theme }) => theme.colors.gray2};
+  ${({ theme }) => theme.fonts.caption_12_b};
+  color: ${({ theme }) => theme.colors.gray1};
 `;
