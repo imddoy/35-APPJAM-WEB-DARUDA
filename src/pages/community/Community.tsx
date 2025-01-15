@@ -29,7 +29,7 @@ const Community = () => {
         <CircleButton size="small" shadow={true} icon={<IcPlusWhite20 />}>
           글쓰기
         </CircleButton>
-        <S.TopBtn onClick={handleScrollUp}>
+        <S.TopBtn type="button" onClick={handleScrollUp}>
           <IcChevron />
         </S.TopBtn>
       </S.FollowingBtns>

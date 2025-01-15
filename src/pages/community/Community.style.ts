@@ -11,7 +11,7 @@ export const CommunityWrapper = styled.section`
 
 export const CommunityContainer = styled.section`
   display: inline-flex;
-  gap: 14px;
+  gap: 1.4rem;
   align-items: flex-start;
   justify-content: center;
 `;

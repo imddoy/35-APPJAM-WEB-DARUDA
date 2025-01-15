@@ -45,7 +45,7 @@ const Card = ({ post }: CardDataProp) => {
           <S.CardTextItem>{formatContent(content, images.length)}</S.CardTextItem>
           <S.ImageGrid $imageCount={images.length}>
             {images.map((image, i) => (
-              <img key={i} src={image} alt={`${i}`} />
+              <img key={i} src={image} alt={`Post-card-img-${i}`} />
             ))}
           </S.ImageGrid>
         </S.CardTopContent>
