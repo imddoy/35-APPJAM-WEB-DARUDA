@@ -6,7 +6,7 @@ const meta: Meta<typeof Card> = {
   title: 'components/Card',
   component: Card,
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
   },
   tags: ['autodocs'],
 };
