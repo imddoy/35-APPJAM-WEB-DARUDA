@@ -64,10 +64,18 @@ export const CardTitleItem = styled.h1`
   word-break: break-word;
 `;
 
-export const CardTextItem = styled.pre`
+export const CardTextItem = styled.pre<{ $isImgInclude: boolean }>`
+  display: -webkit-box;
+  width: 100%;
+  overflow: hidden;
+
   ${({ theme }) => theme.fonts.caption_14_m};
   color: ${({ theme }) => theme.colors.gray1};
   white-space: normal;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: ${({ $isImgInclude }) => ($isImgInclude ? 2 : 4)};
+  -webkit-box-orient: vertical;
+
   word-wrap: break-word;
   word-break: break-word;
 `;
@@ -109,6 +117,7 @@ export const ImageGrid = styled.div<{ $imageCount: number }>`
   }};
   gap: 0.8rem;
   width: 100%;
+  margin-top: 0.6rem;
 
   ${({ $imageCount }) =>
     $imageCount === 5 &&
