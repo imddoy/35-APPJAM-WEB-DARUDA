@@ -41,7 +41,7 @@ export const MetaInfo = styled.span`
 
 export const CardDivider = styled.div`
   flex-shrink: 0;
-  width: 67rem;
+  width: 100%;
   height: 0.1rem;
 
   background-color: ${({ theme }) => theme.colors.gray4};

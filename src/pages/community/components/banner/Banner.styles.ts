@@ -30,6 +30,7 @@ export const BannerTitle = styled.h1`
 export const ModalChipsContainer = styled.ul`
   display: flex;
   gap: 1rem;
+  width: max-content;
 `;
 
 export const ModalChip = styled.li`

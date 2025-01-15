@@ -6,9 +6,8 @@ const meta: Meta<typeof Banner> = {
   title: 'Components/Banner',
   component: Banner,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
-  tags: ['autodocs'],
 };
 
 export default meta;
