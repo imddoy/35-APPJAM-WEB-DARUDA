@@ -1,4 +1,4 @@
-import { IcComment, IcBookmark, IcOverflowGray44 } from '@assets/svgs';
+import { IcCommentGray24, IcBookmark, IcOverflowGray44 } from '@assets/svgs';
 import SquareButton from '@components/button/squareButton/SquareButton';
 import Chip from '@components/chip/Chip';
 import DropDown from '@components/dropdown/DropDown';
@@ -52,7 +52,7 @@ const Card = ({ post }: CardDataProp) => {
         <S.CardDivider />
         <S.CardBottomBar>
           <S.BottomBarLeft>
-            <SquareButton icon={<IcComment />} size="small" stroke={false}>{`${commentCount}개`}</SquareButton>
+            <SquareButton icon={<IcCommentGray24 />} size="small" stroke={false}>{`${commentCount}개`}</SquareButton>
             <SquareButton icon={<IcBookmark />} size="small" stroke={false}>
               북마크
             </SquareButton>
