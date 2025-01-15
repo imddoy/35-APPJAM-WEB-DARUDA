@@ -1,3 +1,4 @@
+import * as React from 'react';
 import type { SVGProps } from 'react';
 
 const SvgIcAlarmBlack24 = (props: SVGProps<SVGSVGElement>) => (
