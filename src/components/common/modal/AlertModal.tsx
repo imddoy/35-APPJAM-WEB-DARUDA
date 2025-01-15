@@ -10,10 +10,10 @@ interface AlertModalProps {
   ImgPopupModal: FunctionComponent<SVGProps<SVGSVGElement>>;
 
   isSingleModal: boolean;
-  singleBtnContent: string;
+  singleBtnContent?: string;
 
-  modalContent: string;
-  DobblebtnProps: {
+  modalContent?: string;
+  DobblebtnProps?: {
     isPrimaryRight: boolean;
     primaryBtnContent: string;
     secondaryBtnContent: string;

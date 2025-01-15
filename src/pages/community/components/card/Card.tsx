@@ -1,7 +1,9 @@
-import { IcCommentGray24, IcBookmark, IcOverflowGray44 } from '@assets/svgs';
+import { IcCommentGray24, IcBookmark, IcOverflowGray44, ImgModalexit } from '@assets/svgs';
 import SquareButton from '@components/button/squareButton/SquareButton';
 import Chip from '@components/chip/Chip';
 import DropDown from '@components/dropdown/DropDown';
+import { AlterModal } from '@components/modal';
+import { useModal } from '@pages/community/hooks';
 import { formatContent } from '@pages/community/utils';
 
 import * as S from './Card.styled';
@@ -23,6 +25,8 @@ interface CardDataProp {
 
 const Card = ({ post }: CardDataProp) => {
   const { toolName, toolLogo, title, content, images, updatedAt, nickName, commentCount } = post;
+
+  const { isOpen, handleModalOpen, handleModalClose } = useModal();
 
   return (
     <S.CardWrapper>
@@ -69,18 +73,26 @@ const Card = ({ post }: CardDataProp) => {
               >
                 수정하기
               </DropDown.Item>
-              <DropDown.Item
-                status="danger"
-                onClick={() => {
-                  alert('클릭!');
-                }}
-              >
+              <DropDown.Item status="danger" onClick={handleModalOpen}>
                 삭제하기
               </DropDown.Item>
             </DropDown.Content>
           </DropDown>
         </S.CardBottomBar>
       </S.CardLayout>
+      <AlterModal
+        modalTitle="글을 삭제하시겠어요?"
+        isOpen={isOpen}
+        handleClose={handleModalClose}
+        isSingleModal={false}
+        ImgPopupModal={ImgModalexit}
+        modalContent="삭제된 글은 다시 볼 수 없어요"
+        DobblebtnProps={{
+          isPrimaryRight: false,
+          primaryBtnContent: '한 번 더 생각할게요',
+          secondaryBtnContent: '삭제하기',
+        }}
+      />
     </S.CardWrapper>
   );
 };
