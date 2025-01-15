@@ -81,8 +81,8 @@ export const POST_DATA = [
     toolName: 'ChatGPT',
     toolLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ChatGPT-Logo.svg/2048px-ChatGPT-Logo.svg.png',
     title: 'PM 일 잘 해요PM 일 잘 해요PM 일 잘 해요PM 일 잘 해요PM 일 잘 해요PM 일',
-    content: `대박대박대박\n
-    대박대박대박대박\n
+    content: `대박대박대박
+    대박대박대박대박
     대박대박대박대박대박대박대박대박대박대박대박대박대박대박대박대박대박대`,
     images: [],
     updatedAt: '2024-12-21',

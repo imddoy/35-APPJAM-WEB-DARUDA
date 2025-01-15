@@ -71,7 +71,7 @@ export const CardTextItem = styled.pre<{ $isImgInclude: boolean }>`
 
   ${({ theme }) => theme.fonts.caption_14_m};
   color: ${({ theme }) => theme.colors.gray1};
-  white-space: normal;
+  white-space: pre-wrap;
   text-overflow: ellipsis;
   -webkit-line-clamp: ${({ $isImgInclude }) => ($isImgInclude ? 2 : 4)};
   -webkit-box-orient: vertical;
@@ -127,22 +127,22 @@ export const ImageGrid = styled.div<{ $imageCount: number }>`
       grid-row: 1 / 2; 
     }
 
-    & > *:nth-child(2) {
+    & > *:nth-of-type(2) {
       grid-column:  4 / 7;  
       grid-row: 1 / 2; 
     }
 
-    & > *:nth-child(3) {
+    & > *:nth-of-type(3) {
       grid-column: 1 / 3;  
       grid-row: 2 / 3;  
     }
 
-    & > *:nth-child(4) {
+    & > *:nth-of-type(4) {
       grid-column: 3 / 5;  
       grid-row: 2 / 3; 
     }
 
-    & > *:nth-child(5) {
+    & > *:nth-of-type(5) {
       grid-column: 5 / 7;
       grid-row: 2 / 3;  
     }
@@ -150,5 +150,7 @@ export const ImageGrid = styled.div<{ $imageCount: number }>`
 
   img {
     width: 100%;
+
+    border-radius: 0.8rem;
   }
 `;
