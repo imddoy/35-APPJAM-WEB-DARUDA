@@ -1,31 +1,10 @@
-import Footer from '@components/footer/Footer';
-import Header from '@components/header/Header';
-import { HEADER_STATE, HeaderState } from '@constants/headerState';
 import styled from '@emotion/styled';
 import MyPageTab from '@pages/myPage/components/tab/MyPageTab';
 import { MENU_LIST } from '@pages/myPage/constants/menuList';
 import { ReactNode } from 'react';
-import { Outlet, useLocation } from 'react-router';
 
-const MyPageLayout = () => {
-  // Header 상태 설정 (로그인 후)
-  const headerState: HeaderState = HEADER_STATE.LOGGED_IN;
-
-  return (
-    <>
-      <Header headerState={headerState} />
-      <MyPageContainer>
-        <Outlet />
-      </MyPageContainer>
-      <Footer />
-    </>
-  );
-};
-export default MyPageLayout;
-
-const MyPageContainer = ({ children }: { children: ReactNode }) => {
-  const location = useLocation();
-  const activeMenu = MENU_LIST.find((menu) => menu.url === location.pathname)?.id || 1;
+export const MyPageContainerForStory = ({ children }: { children: ReactNode }) => {
+  const activeMenu = 3;
 
   return (
     <S.LayoutWrapper>
@@ -59,7 +38,6 @@ const S = {
       padding: 2.8rem 0;
 
       color: ${({ theme }) => theme.colors.black};
-
       ${({ theme }) => theme.fonts.body_24_b};
     }
   `,
@@ -79,7 +57,6 @@ const S = {
       padding-left: 3.6rem;
 
       color: ${({ theme }) => theme.colors.black};
-
       ${({ theme }) => theme.fonts.body_20_b};
     }
   `,

@@ -1,7 +1,7 @@
 import { SVGProps, FunctionComponent } from 'react';
 
 import * as S from './AlterModal.styled';
-import { SingleBtn, DobbleBtns, SingleBtnModal, DobbleBtnModal, ModalWrapper } from './component';
+import { SingleBtn, DoubleBtns, SingleBtnModal, DoubleBtnModal, ModalWrapper } from './component';
 
 interface AlertModalProps {
   modalTitle: string;
@@ -13,34 +13,39 @@ interface AlertModalProps {
   singleBtnContent?: string;
 
   modalContent?: string;
-  DobblebtnProps?: {
+  DoublebtnProps?: {
     isPrimaryRight: boolean;
     primaryBtnContent: string;
     secondaryBtnContent: string;
+    handleSecondClose?: () => void;
   };
 }
 
 const AlterModal = (props: AlertModalProps) => {
-  const { isSingleModal, modalTitle, ImgPopupModal, isOpen, handleClose } = props;
+  const { isSingleModal, modalTitle, ImgPopupModal, isOpen, handleClose, DoublebtnProps } = props;
 
   const renderModalContent = () =>
     isSingleModal ? (
       <SingleBtnModal modalTitle={modalTitle} ImgPopupModal={ImgPopupModal} />
     ) : (
-      <DobbleBtnModal modalTitle={modalTitle} modalContent={props.modalContent} ImgPopupModal={ImgPopupModal} />
+      <DoubleBtnModal modalTitle={modalTitle} modalContent={props.modalContent} ImgPopupModal={ImgPopupModal} />
     );
 
   const renderModalButtons = () =>
     isSingleModal ? (
       <SingleBtn singleBtnContent={props.singleBtnContent} handleClose={handleClose} />
     ) : (
-      <DobbleBtns {...props.DobblebtnProps} handleClose={handleClose} />
+      <DoubleBtns {...props.DoublebtnProps} handleClose={handleClose} />
     );
 
   return (
     <ModalWrapper isOpen={isOpen} $isSingleModal={isSingleModal}>
-      <S.ModalContainer $isSingleModal={isSingleModal}>{renderModalContent()}</S.ModalContainer>
-      {renderModalButtons()}
+      <>
+        <S.ModalContainer $isSingleModal={isSingleModal} $isPrimaryRight={DoublebtnProps?.isPrimaryRight}>
+          {renderModalContent()}
+        </S.ModalContainer>
+        {renderModalButtons()}
+      </>
     </ModalWrapper>
   );
 };
