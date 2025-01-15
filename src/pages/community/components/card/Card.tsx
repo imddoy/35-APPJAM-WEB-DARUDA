@@ -61,7 +61,7 @@ const Card = ({ post }: CardDataProp) => {
             <DropDown.ToggleBtn>
               <IcOverflowGray44 />
             </DropDown.ToggleBtn>
-            <DropDown.Content>
+            <DropDown.Content $display="top">
               <DropDown.Item
                 onClick={() => {
                   alert('클릭!');

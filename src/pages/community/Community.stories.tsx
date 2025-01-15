@@ -22,7 +22,6 @@ const meta: Meta<typeof Community> = {
       </>
     ),
   ],
-  tags: ['autodocs'],
 };
 
 export default meta;

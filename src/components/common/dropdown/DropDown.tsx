@@ -45,12 +45,13 @@ const ToggleBtn = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const Content = ({ children }: { children: ReactNode }) => {
+// $diplay: 'bottom'의 경우, 드롭다운이 위로 펼쳐지는 경우 입니다.
+const Content = ({ children, $display = 'top' }: { children: ReactNode; $display?: 'top' | 'bottom' }) => {
   const { isOpen } = useComponentContext(DropDownContext, 'DropDown');
 
   if (!isOpen) return null;
 
-  return <S.DropDownWrapper>{children}</S.DropDownWrapper>;
+  return <S.DropDownWrapper $display={$display}>{children}</S.DropDownWrapper>;
 };
 
 const Item = ({ status, onClick, children }: DropDownItemPropType) => {

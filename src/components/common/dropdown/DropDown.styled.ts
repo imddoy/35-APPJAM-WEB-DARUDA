@@ -32,9 +32,9 @@ export const DropDownToggleBtn = styled.button<{ $isOpen: boolean }>`
   }
 `;
 
-export const DropDownWrapper = styled.ul`
+export const DropDownWrapper = styled.ul<{ $display: 'top' | 'bottom' }>`
   position: absolute;
-  top: 4.5rem;
+  ${({ $display }) => $display}: 4.5rem;
   z-index: 1;
   width: min-content;
 

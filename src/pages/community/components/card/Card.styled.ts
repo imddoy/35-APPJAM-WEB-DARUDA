@@ -64,7 +64,7 @@ export const CardTitleItem = styled.h1`
   word-break: break-word;
 `;
 
-export const CardTextItem = styled.h1`
+export const CardTextItem = styled.pre`
   ${({ theme }) => theme.fonts.caption_14_m};
   color: ${({ theme }) => theme.colors.gray1};
   white-space: normal;
