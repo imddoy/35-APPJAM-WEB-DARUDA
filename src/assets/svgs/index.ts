@@ -1,10 +1,12 @@
 export { default as ImgBanner } from './ImgBanner';
+export { default as Union } from './Union';
 export { default as IcBookmark } from './IcBookmark';
 export { default as BtnWritingChipxIcon } from './BtnWritingChipxIcon';
 export { default as CardListAppcard } from './CardListAppcard';
 export { default as CardListAppcard1 } from './CardListAppcard1';
 
 export { default as IcAlarmBlack24 } from './IcAlarmBlack24';
+export { default as IcArrowDownBlack24Copy } from './IcArrowDownBlack24Copy';
 export { default as IcArrowDownBlack24 } from './IcArrowDownBlack24';
 export { default as IcBookmark32 } from './IcBookmark32';
 export { default as IcBookmarkGray24Dact } from './IcBookmarkGray24Dact';
@@ -30,6 +32,4 @@ export { default as ImgModalexit } from './ImgModalexit';
 export { default as ImgModalexit2 } from './ImgModalexit2';
 
 export { default as ImgTextlogo } from './ImgTextlogo';
-
 export { default as ImgUploadWhite48 } from './ImgUploadWhite48';
-export { default as Union } from './Union';
