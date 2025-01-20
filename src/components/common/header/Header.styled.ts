@@ -28,6 +28,7 @@ export const LogoSection = styled.section`
 `;
 
 export const CommunityNav = styled.nav`
+  z-index: 3;
   margin-right: auto;
 `;
 
