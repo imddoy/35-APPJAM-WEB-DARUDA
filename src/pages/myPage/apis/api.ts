@@ -1,15 +1,15 @@
 import { del, get, patch, post } from '@apis/index';
 import type { AxiosResponse } from 'axios';
 
-import { BoardResponse, BoardResponseData } from '../types/board';
+import { BoardResponseData } from '../types/board';
 import { Info } from '../types/info';
-import { ToolList, ToolResponse } from '../types/tool';
+import { ToolList } from '../types/tool';
 
 // 회원정보 조회
 export const getUserInfo = async (): Promise<Info | null> => {
   try {
-    const response: AxiosResponse<Info | null> = await get(`users/profile/me`);
-    return response.data;
+    const response: Info = await get(`users/profile/me`);
+    return response;
   } catch (error) {
     console.error('Error:', error);
     return null;
@@ -25,7 +25,7 @@ export const patchInfo = async ({ nickname, position }: { nickname?: string; pos
     if (position !== undefined) requestData.positions = position;
 
     const response: AxiosResponse<Info | null> = await patch(`users/profile`, requestData);
-    return response.data;
+    return response;
   } catch (error) {
     console.error('Error:', error);
     return null;
@@ -35,8 +35,8 @@ export const patchInfo = async ({ nickname, position }: { nickname?: string; pos
 // 작성 글 조회
 export const getBoardList = async (page?: number): Promise<BoardResponseData | undefined> => {
   try {
-    const response: AxiosResponse<BoardResponse> = await get(`users/profile/boards?page=${page}`);
-    return response.data.data;
+    const response: AxiosResponse<BoardResponseData> = await get(`users/profile/boards?page=${page}`);
+    return response.data;
   } catch (error) {
     console.error('Error:', error);
   }
@@ -45,8 +45,8 @@ export const getBoardList = async (page?: number): Promise<BoardResponseData | u
 // 관심 글 조회
 export const getFavoriteBoardList = async (page?: number): Promise<BoardResponseData | null> => {
   try {
-    const response: AxiosResponse<BoardResponse> = await get(`users/profile/boards/scrap?page=${page}`);
-    return response.data.data;
+    const response: AxiosResponse<BoardResponseData> = await get(`users/profile/boards/scrap?page=${page}`);
+    return response.data;
   } catch (error) {
     console.error('Error:', error);
     return null;
@@ -56,8 +56,8 @@ export const getFavoriteBoardList = async (page?: number): Promise<BoardResponse
 // 관심 툴 조회
 export const getToolList = async (): Promise<ToolList | null> => {
   try {
-    const response: AxiosResponse<ToolResponse> = await get(`users/profile/tools`);
-    return response.data.data;
+    const response: AxiosResponse<ToolList> = await get(`users/profile/tools`);
+    return response.data;
   } catch (error) {
     console.error('Error:', error);
     return null;
