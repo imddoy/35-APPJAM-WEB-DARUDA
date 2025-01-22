@@ -7,7 +7,7 @@ export const postNicknameCheck = async (
     const response = await post<{ statusCode: number; message: string; data: boolean }>(
       `users/nickname?nickname=${nickname}`,
     );
-    return response.data;
+    return response;
   } catch (error) {
     console.error('Error:', error);
   }

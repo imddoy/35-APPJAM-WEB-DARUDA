@@ -19,7 +19,7 @@ export const postBoardScrap = async (boardId: number) => {
 export const delBoard = async (boardId: number) => {
   try {
     const response = await del(`boards/${boardId}`);
-    return response.data;
+    return response;
   } catch (error) {
     console.error('Error:', error);
   }

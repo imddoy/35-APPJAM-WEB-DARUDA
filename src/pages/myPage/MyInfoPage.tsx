@@ -38,19 +38,19 @@ const MyInfoPage = () => {
 
   useEffect(() => {
     if (data) {
-      setSelectedAffiliation(data.data.positions);
-      setNickname(data.data.nickname);
+      setSelectedAffiliation(data.positions);
+      setNickname(data.nickname);
     }
   }, [data]);
 
   const handleSaveInfo = async () => {
     const updatedData: { nickname?: string; position?: string } = {};
 
-    if (nickname !== data?.data.nickname) {
+    if (nickname !== data?.nickname) {
       updatedData.nickname = nickname;
     }
 
-    if (selectedAffiliation !== data?.data.positions) {
+    if (selectedAffiliation !== data?.positions) {
       const affiliationKey = Object.keys(AFFILIATION_OPTIONS).find(
         (key) => AFFILIATION_OPTIONS[key as keyof typeof AFFILIATION_OPTIONS] === selectedAffiliation,
       );
@@ -94,8 +94,8 @@ const MyInfoPage = () => {
   };
 
   useEffect(() => {
-    const isNicknameChanged = nickname !== data?.data.nickname;
-    const isAffiliationChanged = selectedAffiliation !== data?.data.positions;
+    const isNicknameChanged = nickname !== data?.nickname;
+    const isAffiliationChanged = selectedAffiliation !== data?.positions;
 
     // 닉네임이 바뀌었으면 중복확인 필수
     if (isNicknameChanged && isAffiliationChanged) {
@@ -151,7 +151,7 @@ const MyInfoPage = () => {
               description={nicknameMessage}
               onClick={handleNicknameCheck}
               onChange={handleNicknameChange}
-              placeholder={data?.data.nickname}
+              placeholder={data?.nickname}
             />
           </S.NicknameInputBox>
         </S.NickNameWrapper>
