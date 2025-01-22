@@ -1,6 +1,9 @@
+import { get } from '@apis/index';
 import { MYPAGE_QUERY_KEY } from '@pages/myPage/apis/queries';
 import { ToolList } from '@pages/myPage/types/tool';
+import { ToolType } from '@pages/toolDetail/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { AxiosResponse } from 'axios';
 
 import { postToolScrap } from './api';
 
@@ -40,4 +43,14 @@ export const useToolScrap = () => {
       queryClient.refetchQueries({ queryKey: MYPAGE_QUERY_KEY.MY_FAVORITE_TOOL_LIST(userId) });
     },
   });
+};
+
+export const getDetail = async (toolId: number): Promise<ToolType | null> => {
+  try {
+    const response: AxiosResponse<ToolType> = await get(`tools/${toolId}`);
+    return response.data;
+  } catch (error) {
+    console.error('툴 상세 정보 조회 오류:', error);
+    return null;
+  }
 };
