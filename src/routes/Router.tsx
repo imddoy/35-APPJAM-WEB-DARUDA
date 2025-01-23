@@ -4,6 +4,7 @@ import CommunityWrite from '@pages/communityWrite/CommunityWrite';
 import NotFound from '@pages/error/NotFound';
 import Intro from '@pages/intro/Intro';
 import KakaoAuth from '@pages/login/KakaoAuth';
+import KakaoRedirectHandler from '@pages/login/KakaoRedirectHandler.';
 import SignUp from '@pages/signUp/SignUp';
 import ToolDetail from '@pages/toolDetail/ToolDetail';
 import ToolList from '@pages/toolList/ToolList';
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       { path: 'login', element: <KakaoAuth /> }, // 로그인
       { path: 'signUp', element: <SignUp /> }, // 회원가입
       { path: '*', element: <NotFound /> },
+      { path: '/api/v1/users/kakao/login-url', element: <KakaoRedirectHandler /> },
     ],
   },
   {
