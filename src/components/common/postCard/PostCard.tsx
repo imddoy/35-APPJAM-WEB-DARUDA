@@ -42,7 +42,7 @@ const Card = forwardRef<HTMLLIElement, CardDataProp>((props, ref) => {
   const [clickedIdx, setClickedIdx] = useState(0);
   const [isWarning, setIsWarning] = useState(false);
   const [isImgModalOpen, setIsImgModalOpen] = useState(false);
-  const { isSuccess: isBookMarkSuccess, mutate: srapMutate } = useBoardScrap(handleToastOpen);
+  const { isSuccess: isBookMarkSuccess, mutate: srapMutate } = useBoardScrap();
   const [isClicked, setIsClicked] = useState(isScraped);
 
   useEffect(() => {
