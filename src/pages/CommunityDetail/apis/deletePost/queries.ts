@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Post } from 'src/types/post';
 
 import delComment from './api';
+// 주석
 
 export interface InfiniteQueryResponse {
   pages: CommentResponse[]; // 각 페이지의 댓글 데이터
