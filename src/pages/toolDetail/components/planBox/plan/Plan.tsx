@@ -49,7 +49,7 @@ const Plan = forwardRef<HTMLDivElement, ToolPlan>(({ toolPlans }, ref) => {
               key={plan.planId}
               isSingleLine={false}
               planName={plan.planName}
-              label={plan.price}
+              label={price}
               dollar={plan.isDollar ? Math.round((price ?? 0) / 1300) : undefined}
               isdollar={plan.isDollar}
               description={plan.description}

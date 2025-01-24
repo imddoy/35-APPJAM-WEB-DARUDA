@@ -5,7 +5,7 @@ import * as S from './Toggle.styled';
 interface TogglePropsType {
   isSingleLine: boolean;
   planName?: string;
-  label: number | string;
+  label: number | string | null;
   dollar?: number;
   description: string;
   isdollar: boolean;
