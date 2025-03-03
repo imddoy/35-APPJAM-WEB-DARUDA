@@ -5,7 +5,7 @@ import CommunityWrite from '@pages/communityWrite/CommunityWrite';
 import NotFound from '@pages/error/NotFound';
 import Intro from '@pages/intro/Intro';
 import KakaoAuth from '@pages/login/KakaoAuth';
-import KakaoRedirectHandler from '@pages/login/KakaoRedirectHandler.';
+import KakaoRedirectHandler from '@pages/login/KakaoRedirectHandler';
 import SignUp from '@pages/signUp/SignUp';
 import ToolDetail from '@pages/toolDetail/ToolDetail';
 import ToolList from '@pages/toolList/ToolList';
@@ -18,15 +18,10 @@ import MYPAGE_ROUTES from './MyPageRoutes';
 const router = createBrowserRouter([
   {
     path: '/',
+    element: <Layout />,
     children: [
       { index: true, element: <Intro /> }, // 홈: 온보딩 페이지
       { path: 'intro', element: <Intro /> }, // 온보딩 페이지
-    ],
-  },
-  {
-    path: '/',
-    element: <Layout />,
-    children: [
       { path: 'toollist', element: <ToolList /> }, // 툴 리스트
       { path: 'toollist/:toolId', element: <ToolDetail /> }, // 툴 상세
       { path: 'community', element: <Community /> }, // 커뮤니티
@@ -35,8 +30,8 @@ const router = createBrowserRouter([
       { path: 'community/modify/:id', element: <CommunityModify /> }, // 글 수정
       { path: 'login', element: <KakaoAuth /> }, // 로그인
       { path: 'signUp', element: <SignUp /> }, // 회원가입
+      { path: 'kakao-redirect', element: <KakaoRedirectHandler /> }, // 카카오 리다이렉트 경로
       { path: '*', element: <NotFound /> }, // 404 페이지
-      { path: '/api/v1/users/kakao/login-url', element: <KakaoRedirectHandler /> },
     ],
   },
   {
