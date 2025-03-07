@@ -20,8 +20,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <Layout />,
     children: [
-      { index: true, element: <Intro /> }, // 홈: 온보딩 페이지
-      { path: 'intro', element: <Intro /> }, // 온보딩 페이지
+      { index: true, element: <ToolList /> }, // 툴 리스트 (홈화면)
       { path: 'toollist', element: <ToolList /> }, // 툴 리스트
       { path: 'toollist/:toolId', element: <ToolDetail /> }, // 툴 상세
       { path: 'community', element: <Community /> }, // 커뮤니티
@@ -34,6 +33,11 @@ const router = createBrowserRouter([
       { path: '*', element: <NotFound /> }, // 404 페이지
     ],
   },
+  {
+    path: '/onboarding',
+    element: <Intro />,
+  }, // 온보딩 페이지
+
   {
     path: '/mypage',
     element: <MyPageLayout />,
