@@ -1,3 +1,4 @@
+import { logout as handleLogout } from '@apis/index';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
@@ -140,9 +141,8 @@ export const useLogout = () => {
         queryClient.invalidateQueries({ queryKey: MYPAGE_QUERY_KEY.MY_FAVORITE_POST_LIST(userId) });
         queryClient.invalidateQueries({ queryKey: MYPAGE_QUERY_KEY.MY_FAVORITE_TOOL_LIST(userId) });
       }
-
-      // localStorage에서 'user' 삭제
-      localStorage.removeItem('user');
+      queryClient.clear();
+      handleLogout();
     },
   });
 };
