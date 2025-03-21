@@ -62,7 +62,7 @@ const CommunityWrite = () => {
       navigate('/community');
     } catch (error: unknown) {
       console.error('에러 발생:', error);
-      setToastMessage('이미지의 용량을 줄이거나 개수를 줄여주세요.');
+      setToastMessage('다시 시도해주세요.');
       setIsToastVisible(true);
       setTimeout(() => setIsToastVisible(false), 3000);
     }
@@ -76,8 +76,12 @@ const CommunityWrite = () => {
         <S.WriteContainer>
           <S.WriteBox>
             <WritingTitle setTitle={setTitle} />
-            <WritingBody setBody={setBody} />
-            <WritingImg onImageUpload={setImages} />
+            <WritingBody
+              setBody={setBody}
+              onImageUpload={(files) => setImages((prev) => [...prev, ...files])}
+              images={images}
+            />
+            <WritingImg onImageUpload={(files) => setImages(files)} images={images} />
           </S.WriteBox>
           <S.SideBanner>
             <ToolListBanner onToolSelect={handleToolSelect} />
