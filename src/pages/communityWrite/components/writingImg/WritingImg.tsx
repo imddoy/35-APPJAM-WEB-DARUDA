@@ -97,7 +97,9 @@ const WritingImg = ({ onImageUpload, images }: WritingImgProps) => {
           </S.ImagePreview>
         ))}
       </S.PreviewContainer>
-      <S.Content>* 이미지 업로드 용량은 한장 당 최대 7MB 입니다.</S.Content>
+      <S.Content>
+        * 이미지를 추가하려면 붙여넣기 또는 클릭하세요. {'\n'} * 이미지 업로드 용량은 한장 당 최대 7MB 입니다.
+      </S.Content>
       {isToastVisible && (
         <S.ToastBox>
           <Toast isVisible={true} isWarning={true}>
