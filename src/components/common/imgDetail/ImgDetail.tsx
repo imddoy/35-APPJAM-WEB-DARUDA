@@ -12,7 +12,7 @@ const ImgDetail = ({ handleModalClose, imgList, index }: ImgDetailPropsType) => 
   const [activeIndex, setActiveIndex] = useState(index);
   return (
     <S.ModalOverlay>
-      <S.CloseBtn onClick={handleModalClose} strokeColor="white" />
+      <S.CloseBtn onClick={handleModalClose} />
       <S.ModalInnerWrapper>
         <S.ImgThumb>
           {imgList?.map((img, index) => (
