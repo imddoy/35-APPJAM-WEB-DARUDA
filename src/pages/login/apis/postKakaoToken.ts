@@ -8,11 +8,10 @@ interface SuccessUserResponse {
   data?: { email: string; isUser: boolean };
 }
 
-// 카카오 로그인 (인가 코드 전송)
 export const sendAuthorization = async (code: string) => {
   try {
-    const response: SuccessUserResponse = await axios.post(
-      'users/token',
+    const response = await axios.post<SuccessUserResponse>(
+      `${import.meta.env.VITE_API_BASE_URL}/users/token`,
       {},
       {
         headers: {
@@ -22,7 +21,7 @@ export const sendAuthorization = async (code: string) => {
       },
     );
 
-    return response;
+    return response.data;
   } catch (error) {
     console.error('인가 코드 처리 실패:', error);
     throw error;
