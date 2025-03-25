@@ -1,4 +1,4 @@
-import { post } from '@apis/index';
+import axios from 'axios';
 
 interface SuccessUserResponse {
   statusCode: number;
@@ -11,13 +11,13 @@ interface SuccessUserResponse {
 // 카카오 로그인 (인가 코드 전송)
 export const sendAuthorization = async (code: string) => {
   try {
-    const response: SuccessUserResponse = await post(
+    const response: SuccessUserResponse = await axios.post(
       'users/token',
       {},
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: code,
+          Authorization: `Bearer ${code}`,
         },
       },
     );
