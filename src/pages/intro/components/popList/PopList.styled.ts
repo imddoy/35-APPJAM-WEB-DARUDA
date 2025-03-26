@@ -30,8 +30,8 @@ export const Image = styled.img<{ $isHidden: boolean }>`
   width: 420px;
   object-fit: cover;
 
-  box-shadow: 2px 8px 20px 0 ${({ theme }) => theme.colors.gray2};
   opacity: ${({ $isHidden }) => ($isHidden ? 0 : 1)};
+  filter: drop-shadow(2px 8px 20px ${({ theme }) => theme.colors.gray2});
   border-radius: 2rem;
 `;
 
