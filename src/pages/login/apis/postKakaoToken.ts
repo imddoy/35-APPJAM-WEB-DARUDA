@@ -12,11 +12,11 @@ export const sendAuthorization = async (code: string) => {
   try {
     const response = await axios.post<SuccessUserResponse>(
       `${import.meta.env.VITE_API_BASE_URL}/users/token`,
-      {},
+      { code: code },
       {
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${code}`,
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+          Authorization: `${code}`,
         },
       },
     );
