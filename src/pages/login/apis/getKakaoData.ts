@@ -1,4 +1,4 @@
-import { get } from '@apis/index';
+import axios from 'axios';
 
 interface RequestLoginURLResponse {
   statusCode: number;
@@ -9,11 +9,14 @@ interface RequestLoginURLResponse {
 // 카카오 로그인 URL 요청 함수
 export const fetchKakaoLogin = async () => {
   try {
-    const response: RequestLoginURLResponse = await get('users/kakao/login-url', {
-      params: { 'social-type': 'kakao' },
-    });
+    const response = await axios.get<RequestLoginURLResponse>(
+      `${import.meta.env.VITE_API_BASE_URL}/users/kakao/login-url`,
+      {
+        params: { 'social-type': 'kakao' },
+      },
+    );
 
-    const redirectUri = response.data;
+    const redirectUri = response.data.data;
     if (redirectUri) {
       window.location.href = redirectUri;
     } else {
