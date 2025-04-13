@@ -83,7 +83,7 @@ export const postAuthorization = async (code: string) => {
       { code: code },
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+          'Content-Type': 'application/json',
           Authorization: `${code}`,
         },
       },
