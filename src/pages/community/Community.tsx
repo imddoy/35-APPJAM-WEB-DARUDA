@@ -1,3 +1,11 @@
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { useNavigate } from 'react-router-dom';
+
+import * as S from './Community.style';
+import Banner from './components/banner/Banner';
+import { useToolCategorySelect } from './hooks';
+import { useBoardListQuery } from '@apis/board';
 import { IcPlusWhite20, IcChevron, ImgPopupNonebookmarkScraptool } from '@assets/svgs';
 import ToolListBanner from '@components/banner/ToolListBanner';
 import CircleButton from '@components/button/circleButton/CircleButton';
@@ -7,22 +15,14 @@ import Title from '@components/title/Title';
 import Toast from '@components/toast/Toast';
 import { useToastOpen } from '@hooks/index';
 import { handleScrollUp } from '@utils';
-import { useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { useNavigate } from 'react-router-dom';
 
-import * as S from './Community.style';
-import Banner from './components/banner/Banner';
-import { useToolCategorySelect } from './hooks';
-
-import { usePostListQuery } from '../../apis/fetchPostList/queries';
 import Card from '../../components/common/postCard/PostCard';
 
 const Community = () => {
-  const { handleToolSelect, pickedtool, setPickedtool, noTopic, initialTool } = useToolCategorySelect();
+  const { handleToolSelect, pickedtool, noTopic, initialTool } = useToolCategorySelect();
 
   const navigate = useNavigate();
-  const { data, fetchNextPage, hasNextPage, isLoading } = usePostListQuery(pickedtool, noTopic);
+  const { data, fetchNextPage, hasNextPage, isLoading } = useBoardListQuery(pickedtool, noTopic);
   const { ref, inView } = useInView();
 
   const { isToastOpen, handleModalOpen } = useToastOpen();
@@ -35,17 +35,6 @@ const Community = () => {
       fetchNextPage();
     }
   }, [inView]);
-
-  // 스크롤 관련 로직
-  useEffect(() => {
-    const storedToolType = sessionStorage.getItem('toolType');
-
-    if (storedToolType) {
-      const ToolType = storedToolType === 'null' ? null : Number(storedToolType);
-      setPickedtool(ToolType);
-      sessionStorage.removeItem('toolType');
-    }
-  }, []);
 
   return (
     <>

@@ -1,22 +1,22 @@
-import ImgPopupl84 from '@assets/svgs/ImgPopupLogout84';
-import ToolListBanner from '@components/banner/ToolListBanner';
-import CircleButton from '@components/button/circleButton/CircleButton';
-import { AlterModal } from '@components/modal';
-import Title from '@components/title/Title';
-import Toast from '@components/toast/Toast';
-import { useModal } from '@pages/community/hooks';
-import { MYPAGE_QUERY_KEY } from '@pages/myPage/apis/queries';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import postBoard from './apis/PostApi';
 import * as S from './CommunityWrite.styled';
 import WritingBody from './components/writingBody/WritingBody';
 import WritingImg from './components/writingImg/WritingImg';
 import WritingTitle from './components/writingTitle/WritingTitle';
 import useCommunityWrite from './hooks/UseCommunityWrite';
 import { createPostFormData } from './utils/FormDataUtils';
+import { postBoard } from '@apis/board';
+import ImgPopupl84 from '@assets/svgs/ImgPopupLogout84';
+import ToolListBanner from '@components/banner/ToolListBanner';
+import CircleButton from '@components/button/circleButton/CircleButton';
+import { AlterModal } from '@components/modal';
+import Title from '@components/title/Title';
+import Toast from '@components/toast/Toast';
+import { MYPAGE_QUERY_KEY } from '@constants/queryKey';
+import { useModal } from '@pages/community/hooks';
 
 const CommunityWrite = () => {
   const {
