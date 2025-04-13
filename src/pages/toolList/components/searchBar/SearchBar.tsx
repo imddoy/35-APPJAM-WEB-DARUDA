@@ -1,10 +1,11 @@
-import { BlurLeft, RightBlur } from '@assets/svgs';
-import Chip from '@components/chip/Chip';
-import { useGetCategoriesQuery } from '@pages/toolList/apis/queries';
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import * as S from './SearchBar.styled';
+import { useGetCategoriesQuery } from '@apis/tool';
+import { BlurLeft, RightBlur } from '@assets/svgs';
+import Chip from '@components/chip/Chip';
+import { useAnalytics } from 'src/hoc/useAnalytics';
 
 export interface SearchBarProps {
   isSticky: boolean;
@@ -13,6 +14,7 @@ export interface SearchBarProps {
 }
 
 const SearchBar = ({ isSticky, onCategoryChange, selectedCategory }: SearchBarProps) => {
+  const { trackEvent } = useAnalytics();
   const [activeButton, setActiveButton] = useState<'left' | 'right'>('right');
   const chipContainerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -22,6 +24,7 @@ const SearchBar = ({ isSticky, onCategoryChange, selectedCategory }: SearchBarPr
   const { data: categoryData } = useGetCategoriesQuery();
 
   const handleCategoryClick = async (categoryName: string) => {
+    trackEvent('Tool_Category_Click', { Tool_Category: categoryName });
     onCategoryChange(categoryName);
     navigate(`/toollist?category=${categoryName}`);
   };

@@ -1,5 +1,6 @@
 import axios, { AxiosError, type AxiosRequestConfig } from 'axios';
 
+import { postReissue } from './auth';
 import { ErrorResponse } from './errorResponse';
 
 // API 응답 기본 타입 정의
@@ -73,26 +74,6 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-// 토큰 갱신 API
-const reissueToken = async (refreshToken: string) => {
-  try {
-    const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/reissue`, null, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-        Authorization: `Bearer ${refreshToken}`,
-      },
-    });
-
-    console.log('토큰 갱신 성공:', response.data);
-    return response.data;
-  } catch (error) {
-    console.error('토큰 갱신 실패:', error);
-    localStorage.removeItem('user');
-    window.location.href = '/login';
-    throw error;
-  }
-};
-
 // 응답 인터셉터: 401 오류 발생 시 토큰 갱신 로직 처리
 instance.interceptors.response.use(
   (response) => response,
@@ -100,13 +81,13 @@ instance.interceptors.response.use(
     const httpStatus = error.response?.status;
     const customStatus = error.response?.data?.status;
 
-    if (httpStatus === 401 && customStatus === 'E401001') {
+    if (httpStatus === 401 || customStatus === 'E401001') {
       console.warn('액세스 토큰 만료. 토큰 갱신 중...');
 
       const user = localStorage.getItem('user');
       if (!user) {
         console.warn('유저 정보 없음');
-        window.location.href = '/login';
+        // window.location.href = '/login';
         return Promise.reject(error);
       }
 
@@ -115,12 +96,12 @@ instance.interceptors.response.use(
         if (!refreshToken) {
           console.warn('리프레시 토큰 없음');
           localStorage.removeItem('user');
-          window.location.href = '/login';
+          // window.location.href = '/login';
           return Promise.reject(error);
         }
 
         // 리프레시 토큰으로 새로운 액세스 토큰 요청
-        const newTokens = await reissueToken(refreshToken);
+        const newTokens = await postReissue(refreshToken);
         setAccessToken(newTokens.accessToken);
 
         // 기존 요청을 새로운 액세스 토큰으로 재시도
@@ -131,8 +112,8 @@ instance.interceptors.response.use(
         }
       } catch (refreshError) {
         console.error('리프레시 토큰 갱신 실패:', refreshError);
-        localStorage.removeItem('user');
-        window.location.href = '/login';
+        // localStorage.removeItem('user');
+        // window.location.href = '/login';
       }
     }
 

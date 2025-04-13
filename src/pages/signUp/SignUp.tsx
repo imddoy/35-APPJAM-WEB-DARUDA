@@ -1,23 +1,23 @@
-import { usePostNicknameCheck } from '@apis/users/queries';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import AffiliationBtn from './components/affiliationButton/AffiliationBtn';
+import { AFFILIATION_OPTIONS } from './constants/affiliationOptions';
+import * as S from './SignUp.styled';
+import { postSignup } from '@apis/auth';
+import { useNicknameCheckMutation } from '@apis/user';
 import { ImgModalcheck } from '@assets/svgs';
 import CircleButton from '@components/button/circleButton/CircleButton';
 import NameInput from '@components/input/nameInput/NameInput';
 import { AlterModal } from '@components/modal';
 import Title from '@components/title/Title';
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import signup from './apis/api';
-import AffiliationBtn from './components/affiliationButton/AffiliationBtn';
-import { AFFILIATION_OPTIONS } from './constants/affiliationOptions';
-import * as S from './SignUp.styled';
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState('');
   const [nicknameState, setNicknameState] = useState<'default' | 'act' | 'error' | 'success'>('default');
   const [nicknameMessage, setNicknameMessage] = useState<string>('');
-  const { mutateAsync: checkMutate } = usePostNicknameCheck();
+  const { mutateAsync: checkMutate } = useNicknameCheckMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAffiliation, setSelectedAffiliation] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -111,7 +111,7 @@ const SignUp = () => {
 
     setIsSubmitting(true);
     try {
-      await signup({
+      await postSignup({
         nickname,
         positions: selectedAffiliation,
         email: user.email,

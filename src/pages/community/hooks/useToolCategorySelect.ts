@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 const useToolCategorySelect = () => {
   const [pickedtool, setPickedtool] = useState<number | null>(null); // 카테고리 중 선택한 툴 정보 (자유일 경우 null)
@@ -10,18 +9,20 @@ const useToolCategorySelect = () => {
     toolLogo: string;
     toolName: string;
   }>();
-  const location = useLocation();
 
   useEffect(() => {
-    if (location.state) {
-      setPickedtool(location.state.toolId);
+    const storedTool = JSON.parse(sessionStorage.getItem('originTool') || 'null');
+
+    if (storedTool) {
+      setPickedtool(storedTool.toolId);
+      setIsNoTopic(storedTool.toolId == null);
       setInitialTool({
-        toolId: location.state.toolId,
-        toolName: location.state.toolMainName,
-        toolLogo: location.state.toolLogo,
+        toolId: storedTool.toolId,
+        toolName: storedTool.toolMainName,
+        toolLogo: storedTool.toolLogo,
       });
     }
-  }, [location.state]);
+  }, []);
 
   const handleToolSelect = (toolId: number | null, noTopic: boolean) => {
     setPickedtool(toolId);

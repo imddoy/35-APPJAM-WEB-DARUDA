@@ -1,8 +1,9 @@
-import { useRelatedTool } from '@pages/toolDetail/apis/api';
 import React, { useEffect, useState } from 'react';
 
 import * as S from './Sidewing.styled';
 import SimilarToolCardList from './SimilarToolCardList';
+import { useAlternativeToolQuery } from '@apis/tool';
+import { useAnalytics } from 'src/hoc/useAnalytics';
 
 interface SidewingProps {
   sectionRefs: {
@@ -13,7 +14,8 @@ interface SidewingProps {
 
 const Sidewing = ({ sectionRefs, toolId }: SidewingProps) => {
   const [activeBtnId, setActiveBtnId] = useState<number>(1); // 기본값 '툴 소개'
-  const { data } = useRelatedTool(toolId);
+  const { data } = useAlternativeToolQuery(toolId);
+  const { trackEvent } = useAnalytics();
 
   // 스크롤 이벤트 핸들러
   useEffect(() => {
@@ -45,7 +47,8 @@ const Sidewing = ({ sectionRefs, toolId }: SidewingProps) => {
     };
   }, [sectionRefs]);
 
-  const handleClickBtn = (id: number) => {
+  const handleClickBtn = (id: number, label: string) => {
+    trackEvent('Tool_Detail_Index_Click', { Tool_Detail_Index: label });
     setActiveBtnId(id);
     const targetRef = sectionRefs[id];
 
@@ -74,7 +77,7 @@ const Sidewing = ({ sectionRefs, toolId }: SidewingProps) => {
       <S.OrderContainer>
         <h1>목차</h1>
         {orderButtons.map((btn) => (
-          <S.OrderBtn key={btn.id} $isActive={activeBtnId === btn.id} onClick={() => handleClickBtn(btn.id)}>
+          <S.OrderBtn key={btn.id} $isActive={activeBtnId === btn.id} onClick={() => handleClickBtn(btn.id, btn.label)}>
             <div className="click-left-bar" />
             {btn.label}
           </S.OrderBtn>

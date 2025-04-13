@@ -1,8 +1,8 @@
-import { useToolData } from '@apis/tool/getToolData';
 import { forwardRef } from 'react';
 
 import * as S from './ReferenceVideo.styled';
 import VideoCard from './videoCard/VideoCard';
+import { useToolDetailQuery } from '@apis/tool';
 
 interface ReferenceVideoProps {
   toolId: number;
@@ -12,7 +12,7 @@ interface ReferenceVideoProps {
 const ReferenceVideo = forwardRef<HTMLDivElement, ReferenceVideoProps>(({ toolId, alternate, ...props }, ref) => {
   // 전달받은 toolId 사용
 
-  const { data } = useToolData(toolId);
+  const { data } = useToolDetailQuery(toolId);
   const videos = data?.videos || [];
 
   return (
@@ -22,7 +22,9 @@ const ReferenceVideo = forwardRef<HTMLDivElement, ReferenceVideoProps>(({ toolId
 
         <S.ReferenceVideoContainer count={videos.length}>
           {videos.length > 0 ? (
-            videos.map((videoUrl, index) => <VideoCard key={index} video={videoUrl} alternate={alternate} />)
+            videos.map((videoUrl, index) => (
+              <VideoCard key={index} video={videoUrl} alternate={alternate} toolName={data?.toolMainName} />
+            ))
           ) : (
             <VideoCard video={null} alternate={alternate} />
           )}
