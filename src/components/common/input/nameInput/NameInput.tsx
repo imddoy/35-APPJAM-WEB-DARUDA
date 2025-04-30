@@ -1,7 +1,7 @@
-import ConfirmBtn from '@pages/login/components/confirmButton/ConfirmBtn';
 import React, { ChangeEvent, InputHTMLAttributes } from 'react';
 
 import * as S from './NameInput.styled';
+import ConfirmBtn from '@pages/login/components/confirmButton/ConfirmBtn';
 
 type NameInputPropTypes = {
   label?: string;

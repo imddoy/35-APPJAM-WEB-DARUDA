@@ -7,7 +7,7 @@
       "customSyntax": "postcss-styled-syntax"
     }
   ],
-  "ignoreFiles": ["node_modules/**/*"],
+  "ignoreFiles": ["node_modules/**/*", "**/*.config.*"],
 
   "rules": {
     "declaration-empty-line-before": [
