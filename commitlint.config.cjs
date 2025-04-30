@@ -1,8 +1,8 @@
 module.exports = {
   parserPreset: {
     parserOpts: {
-      headerPattern: /^(\w+)(?:\/#(\d+))?: (.*)$/, 
-      headerCorrespondence: ['type', 'issue', 'subject'],     
+      headerPattern: /^(\w+)(?:\/#(\d+))?: (.*)$/,
+      headerCorrespondence: ['type', 'issue', 'subject'],
     },
   },
   rules: {
@@ -26,13 +26,7 @@ module.exports = {
         '!HOTFIX',
       ],
     ],
-    'subject-empty': [
-      2,
-      'never',
-    ],
-    'type-empty': [
-      2,
-      'never'
-    ],
+    'subject-empty': [2, 'never'],
+    'type-empty': [2, 'never'],
   },
 };
