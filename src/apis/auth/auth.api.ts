@@ -76,6 +76,7 @@ export const postAuthorization = async (code: string) => {
       `${import.meta.env.VITE_API_BASE_URL}/auth/login?code=${code}`,
       { socialType: 'KAKAO' },
       {
+        withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
         },
