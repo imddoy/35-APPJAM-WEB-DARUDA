@@ -48,8 +48,8 @@ export const postSignup = async (requestBody: SignupReq): Promise<SignupData | u
 export const postReissue = async () => {
   try {
     const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/reissue`, {
+      withCredentials: true,
       headers: {
-        withCredentials: true,
         'Content-Type': 'application/json',
       },
     });
@@ -78,8 +78,8 @@ export const postAuthorization = async (code: string) => {
       `${import.meta.env.VITE_API_BASE_URL}/auth/login?code=${code}`,
       { socialType: 'KAKAO' },
       {
+        withCredentials: true,
         headers: {
-          withCredentials: true,
           'Content-Type': 'application/json',
         },
       },
@@ -97,9 +97,6 @@ export const getKakaoLogin = async () => {
   try {
     const response = await axios.get<RequestLoginURLResponse>(
       `${import.meta.env.VITE_API_BASE_URL}/auth/login-url?socialType=KAKAO`,
-      {
-        withCredentials: true,
-      },
     );
 
     const redirectUri = response.data.data;
