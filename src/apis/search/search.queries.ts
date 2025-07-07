@@ -1,11 +1,11 @@
 import { InfiniteData, useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 import { getSearchBoard, getSearchTool } from './search.api';
-import { SearchBoardResponse, SearchToolResponse } from './search.model';
+import { SearchBoardResponse, SearchTool } from './search.model';
 import { SEARCH_QUERY_KEY } from '@constants/queryKey';
 
 export const useSearchToolQuery = (keyword: string) => {
-  return useQuery<SearchToolResponse>({
+  return useQuery<SearchTool[]>({
     queryKey: SEARCH_QUERY_KEY.SEARCH(keyword, 'tool'),
     queryFn: () => getSearchTool(keyword),
     enabled: !!keyword,
