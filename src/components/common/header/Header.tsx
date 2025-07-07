@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { Category } from './category/Category';
@@ -61,6 +61,28 @@ const Onboarding = () => (
   </S.NavContainer>
 );
 
+const SearchInput = () => {
+  const [keyword, setKeyword] = useState('');
+  const navigate = useNavigate();
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && keyword.trim()) {
+      navigate(`/search?keyword=${encodeURIComponent(keyword.trim())}`);
+    }
+  };
+  return (
+    <S.SearchBar>
+      <S.IcSearchGray />
+      <S.Search
+        placeholder="무엇이든 검색해보세요."
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+    </S.SearchBar>
+  );
+};
+
 const Auth = () => {
   const user = localStorage.getItem('user');
   const navigate = useNavigate();
@@ -87,6 +109,9 @@ const Auth = () => {
   if (user) {
     return (
       <S.AuthSection aria-label="알림/마이페이지">
+        <li>
+          <SearchInput />
+        </li>
         <li>
           <S.StyledAnchor href="https://tally.so/r/w5VJPv" target="_blank">
             {HEADER_TEXTS.support}

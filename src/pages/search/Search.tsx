@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { postSearchResult, toolSearchResult } from './mock/response';
 import * as S from './Search.styled';
-import { PostResponse as Post } from '@apis/board/board.model';
-import { Tool } from '@apis/tool';
-import { IcChevron } from '@assets/svgs';
+import { useSearchBoardQuery, useSearchToolQuery } from '@apis/search';
+import { IcChevron, ImgPopupNonebookmark120 } from '@assets/svgs';
 import Card from '@components/postCard/PostCard';
 import Spacing from '@components/spacing/Spacing';
 import ToolCard from '@components/toolCard/ToolCard';
@@ -13,16 +12,26 @@ import TopBanner from '@pages/toolList/components/topBanner/TopBanner';
 
 const Search = () => {
   const [searchParams] = useSearchParams();
-  const [toolResult, setToolResult] = useState<Tool[]>([]);
-  const [postResult, setPostResult] = useState<Post[]>([]);
   const navigate = useNavigate();
-  const searchKeyword = searchParams.get('keyword');
+  const searchKeyword = searchParams.get('keyword') || '';
   const [isOpen, setIsOpen] = useState(false);
 
+  // 툴 검색
+  const { data: toolData } = useSearchToolQuery(searchKeyword);
+  // 커뮤니티 검색
+  const { data: boardData, fetchNextPage, hasNextPage } = useSearchBoardQuery(searchKeyword);
+
+  const allBoards = boardData?.pages.flatMap((page) => page?.contents || []) || [];
+  // 툴 검색 결과 처리
+  const allTools = toolData || [];
+  const visibleTools = isOpen ? allTools : allTools.slice(0, 2);
+
+  const { ref: inViewRef, inView } = useInView();
   useEffect(() => {
-    setToolResult(toolSearchResult.slice(0, 2));
-    setPostResult(postSearchResult);
-  }, []);
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage]);
 
   return (
     <S.SearchWrapper>
@@ -33,7 +42,7 @@ const Search = () => {
           <h2>툴 리스트</h2>
           <Spacing size="2" />
           <S.CardContainer>
-            {toolResult?.map((tool) => (
+            {visibleTools?.map((tool) => (
               <S.ToolCardWrapper key={tool.toolId}>
                 <ToolCard tool={tool} />
                 <S.Button
@@ -51,21 +60,43 @@ const Search = () => {
             ))}
           </S.CardContainer>
         </S.SearchResult>
-        <S.Toggle
-          onClick={() => {
-            setToolResult(isOpen ? toolSearchResult.slice(0, 2) : toolSearchResult);
-            setIsOpen((prev) => !prev);
-          }}
-          $isOpen={isOpen}
-        >
-          {isOpen ? '검색결과 접기' : '검색결과 펼치기'}
-          <IcChevron />
-        </S.Toggle>
+        {toolData?.length > 2 && (
+          <S.Toggle
+            onClick={() => {
+              setIsOpen((prev) => !prev);
+            }}
+            $isOpen={isOpen}
+          >
+            {isOpen ? '검색결과 접기' : '검색결과 펼치기'}
+            <IcChevron />
+          </S.Toggle>
+        )}
         <S.Divider />
         <S.SearchResult>
           <h2>커뮤니티 전체</h2>
           <Spacing size="2.8" />
-          <S.CardContainer>{postResult?.map((post) => <Card key={post.boardId} post={post} />)}</S.CardContainer>
+          <S.CardContainer>
+            {allBoards.length > 0 ? (
+              <>
+                {allBoards.map((board) => (
+                  <Card
+                    key={board.boardId}
+                    post={{
+                      ...board,
+                      images: board.imageUrl,
+                    }}
+                  />
+                ))}
+                {hasNextPage && <div ref={inViewRef} />}
+              </>
+            ) : (
+              <S.NullBox>
+                <ImgPopupNonebookmark120 />
+                <S.NullAlertText>작성된 글이 없습니다.</S.NullAlertText>
+                <S.NullText>해당 툴에 대한 글을 작성해 정보를 공유해 보세요.</S.NullText>
+              </S.NullBox>
+            )}
+          </S.CardContainer>
         </S.SearchResult>
       </S.SearchBox>
     </S.SearchWrapper>
