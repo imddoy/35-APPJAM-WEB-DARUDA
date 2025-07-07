@@ -31,3 +31,12 @@ export const COMMENT_QUERY_KEY = Object.freeze({
 export const LOGIN_QUERY_KEY = Object.freeze({
   KAKAO_LOGIN: () => ['kakaoLogin'],
 });
+
+export const SEARCH_QUERY_KEY = {
+  SEARCH: (keyword: string, type: 'board' | 'tool') => [`search-${type}`, keyword],
+};
+
+export const NOTI_QUERY_KEY = Object.freeze({
+  LIST_ALL: () => ['notiList'],
+  RECENT_LIST: () => ['recentNotiList'],
+});

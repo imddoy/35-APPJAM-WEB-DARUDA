@@ -2,6 +2,8 @@ import { css, Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
+import { IcSearchGray20 } from '@assets/svgs';
+
 export const HeaderWrapper = styled.header<{ $forOnboarding: boolean }>`
   position: sticky;
   top: 0;
@@ -40,6 +42,10 @@ export const AuthSection = styled.ul`
   justify-content: center;
 `;
 
+export const NotiWrapper = styled.div`
+  position: relative;
+`;
+
 export const NotificationButton = styled.button`
   display: flex;
   align-items: center;
@@ -71,10 +77,36 @@ export const StyledAnchor = styled.a`
   ${({ theme }) => baseLinkStyle(theme)}
 `;
 
+export const SearchBar = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  height: 4rem;
+  padding: 1rem 1.6rem;
+
+  background: ${({ theme }) => theme.colors.white2};
+  border: 1px solid ${({ theme }) => theme.colors.gray4};
+  border-radius: 40px;
+`;
+
+export const IcSearchGray = styled(IcSearchGray20)`
+  flex-shrink: 0;
+`;
+
+export const Search = styled.input`
+  width: 31rem;
+  height: 1.6rem;
+
+  color: ${({ theme }) => theme.colors.gray2};
+
+  ${({ theme }) => theme.fonts.caption_12_r};
+  background: ${({ theme }) => theme.colors.white2};
+`;
+
 export const HoverContent = styled.section<{ $visible: boolean }>`
   position: absolute;
-  top: 5.7rem;
-  right: 6.7rem;
+  top: 3.3rem;
+  right: -2.1rem;
   display: ${({ $visible }) => ($visible ? 'block' : 'none')};
 `;
 
@@ -87,6 +119,9 @@ export const HoverLayout = styled.div`
   height: auto;
 
   color: ${({ theme }) => theme.colors.black};
+
+  box-shadow: 0 6px 12px rgb(211 211 211 / 63%);
+  border-radius: 1.6rem;
 `;
 
 export const CardHeader = styled.header`
@@ -121,43 +156,15 @@ export const CardContainer = styled.ul`
   width: 100%;
 
   background-color: ${({ theme }) => theme.colors.white1};
-  box-shadow: 0 0 12px 0 rgb(211 211 211 / 63%);
-  border-radius: 0 0 1.6rem 1.6rem;
+  border-radius: 1.6rem;
 
-  clip-path: inset(0 0 -12px 0);
-
-  & li {
+  & li:first-child section {
     border-top: 1px solid ${({ theme }) => theme.colors.gray5};
   }
-`;
 
-export const CardItem = styled.section`
-  display: flex;
-  gap: 1.6rem;
-  align-items: center;
-  padding: 1.5rem 2.4rem;
-
-  & > svg {
-    min-width: fit-content;
-  }
-
-  & div {
-    width: 84%;
-  }
-
-  & h2 {
-    width: 85%;
-    overflow: hidden;
-
-    ${({ theme }) => theme.fonts.caption_14_b};
-    color: ${({ theme }) => theme.colors.gray1};
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  & p {
-    ${({ theme }) => theme.fonts.caption_12_m};
-    color: ${({ theme }) => theme.colors.gray4};
+  & li:last-child section {
+    border-bottom: none;
+    border-radius: 0 0 1.6rem 1.6rem;
   }
 `;
 
@@ -166,4 +173,15 @@ export const AuthDivider = styled.span`
 
   color: ${({ theme }) => theme.colors.black};
   ${({ theme }) => theme.fonts.body_16_b_1};
+`;
+
+export const UnreadBadgeDot = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.6rem;
+  height: 0.6rem;
+
+  background-color: ${({ theme }) => theme.colors.orange1};
+  border-radius: 50%;
 `;
