@@ -25,11 +25,7 @@ export interface SearchBoard {
   commentCount: number;
 }
 
-export interface SearchToolResponse {
-  status: number;
-  message: string;
-  data: SearchTool[];
-}
+export type SearchToolResponse = SearchTool[];
 
 export interface SearchBoardResponse {
   status: number;

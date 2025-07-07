@@ -1,10 +1,11 @@
 import { AxiosResponse } from 'axios';
 
-import { SearchBoardResponse, SearchToolResponse } from './search.model';
+import { SearchBoardResponse, SearchTool, SearchToolResponse } from './search.model';
 import { get } from '@apis/index';
 
-export const getSearchTool = async (keyword: string): Promise<SearchToolResponse> => {
+export const getSearchTool = async (keyword: string): Promise<SearchTool[]> => {
   const res: AxiosResponse<SearchToolResponse> = await get(`/search/tool?keyword=${encodeURIComponent(keyword)}`);
+  console.log(res);
   return res.data;
 };
 
