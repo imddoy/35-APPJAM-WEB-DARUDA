@@ -141,7 +141,7 @@ export const BookmarkIconBox = styled(IconBox)<{ $isBookmark: boolean }>`
       ? `
     background-color: ${theme.colors.white1};
     
-    svg {
+    svg  {
       fill: ${theme.colors.iris1};
     }
     `
