@@ -46,7 +46,7 @@ export const useCommentPostMutation = (boardId: string | undefined) => {
       });
       return { prevComments, prevDetail };
     },
-    onError: (error, _, context) => {
+    onError: (_error, _, context) => {
       if (context?.prevComments) {
         queryClient.setQueryData(COMMENT_QUERY_KEY.LIST(boardId), context.prevComments);
       }
