@@ -29,6 +29,11 @@ const CommentCard = ({ comment }: Comment) => {
   const [isImgModalOpen, setIsImgModalOpen] = useState(false);
   const { mutate, isError: deleteError } = useCommentDeleteMutation(comment.commentId, id);
   const { isToastOpen, handleModalOpen: handleToastOpen, handleMessageChange, toastMessage } = useToastOpen();
+  const [opendedId, setOpenedId] = useState<number | null>(null); // 현재 열려있는 드롭다운의 ID 상태관리
+
+  const handleDropdownToggle = (id: number) => {
+    setOpenedId((prev) => (prev === id ? null : id));
+  };
 
   useEffect(() => {
     if (deleteError) {
@@ -41,7 +46,12 @@ const CommentCard = ({ comment }: Comment) => {
   }, [deleteError, authError, handleToastOpen, handleMessageChange]);
 
   const handleModalDelete = async () => {
-    mutate();
+    mutate(undefined, {
+      onSuccess: () => {
+        handleToastOpen();
+        handleMessageChange('댓글이 삭제되었어요');
+      },
+    });
     handleModalClose();
   };
 
@@ -60,7 +70,11 @@ const CommentCard = ({ comment }: Comment) => {
           <span>{comment.nickname}</span>
           <span>{comment.updatedAt}</span>
         </S.MetaInfoItem>
-        <DropDown position="end">
+        <DropDown
+          position="end"
+          isDropdownOpen={opendedId === comment.commentId}
+          onDropdownToggle={() => handleDropdownToggle(comment.commentId)}
+        >
           <DropDown.ToggleBtn>
             <IcOverflowGray24 />
           </DropDown.ToggleBtn>
@@ -89,10 +103,11 @@ const CommentCard = ({ comment }: Comment) => {
       </div>
       {modalType === '신고' ? (
         <ReportModal
+          content={comment.content}
           isOpen={isOpen}
           handleClose={handleModalDelete}
           commentId={comment.commentId}
-          handleTaostMsg={handleMessageChange}
+          handleToastMsg={handleMessageChange}
           handleToastOpen={handleToastOpen}
         />
       ) : (
@@ -114,9 +129,11 @@ const CommentCard = ({ comment }: Comment) => {
       {isImgModalOpen && comment.image && (
         <ImgDetail handleModalClose={handleImgModalClose} imgList={[comment.image]} index={0} />
       )}
-      <Toast isVisible={isToastOpen} isWarning={true}>
-        {toastMessage}
-      </Toast>
+      {toastMessage !== '' && (
+        <Toast isVisible={isToastOpen} isWarning={true}>
+          {toastMessage}
+        </Toast>
+      )}
     </S.Wrapper>
   );
 };
