@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import * as S from './Search.styled';
 import { useSearchBoardQuery, useSearchToolQuery } from '@apis/search';
 import { IcChevron, ImgPopupNonebookmark120 } from '@assets/svgs';
+import Loading from '@components/lottie/Loading';
 import Card from '@components/postCard/PostCard';
 import Spacing from '@components/spacing/Spacing';
 import ToolCard from '@components/toolCard/ToolCard';
@@ -22,9 +23,9 @@ const Search = () => {
   };
 
   // 툴 검색
-  const { data: toolData } = useSearchToolQuery(searchKeyword);
+  const { data: toolData, isLoading: toolLoading } = useSearchToolQuery(searchKeyword);
   // 커뮤니티 검색
-  const { data: boardData, fetchNextPage, hasNextPage } = useSearchBoardQuery(searchKeyword);
+  const { data: boardData, fetchNextPage, hasNextPage, isLoading: baordLoading } = useSearchBoardQuery(searchKeyword);
 
   const allBoards = boardData?.pages.flatMap((page) => page?.contents || []) || [];
   // 툴 검색 결과 처리
@@ -38,6 +39,17 @@ const Search = () => {
     }
   }, [inView, hasNextPage]);
 
+  if (toolLoading || baordLoading) {
+    return (
+      <S.SearchWrapper>
+        <TopBanner />
+        <S.SearchBox>
+          <Loading />
+        </S.SearchBox>
+      </S.SearchWrapper>
+    );
+  }
+
   if (toolData)
     return (
       <S.SearchWrapper>
@@ -48,23 +60,30 @@ const Search = () => {
             <h2>툴 리스트</h2>
             <Spacing size="2" />
             <S.CardContainer>
-              {visibleTools?.map((tool) => (
-                <S.ToolCardWrapper key={tool.toolId}>
-                  <ToolCard tool={tool} />
-                  <S.Button
-                    onClick={() => {
-                      navigate('/community', {
-                        state: { toolId: tool.toolId, toolLogo: tool.toolLogo, toolName: tool.toolName },
-                      });
-                    }}
-                  >
-                    관련 글 모아보기
-                  </S.Button>
-                </S.ToolCardWrapper>
-              ))}
+              {toolData.length > 0 ? (
+                visibleTools?.map((tool) => (
+                  <S.ToolCardWrapper key={tool.toolId}>
+                    <ToolCard tool={tool} />
+                    <S.Button
+                      onClick={() => {
+                        navigate('/community', {
+                          state: { toolId: tool.toolId, toolLogo: tool.toolLogo, toolName: tool.toolName },
+                        });
+                      }}
+                    >
+                      관련 글 모아보기
+                    </S.Button>
+                  </S.ToolCardWrapper>
+                ))
+              ) : (
+                <S.NullBox>
+                  <ImgPopupNonebookmark120 />
+                  <S.NullAlertText>관련 툴이 없습니다.</S.NullAlertText>
+                </S.NullBox>
+              )}
             </S.CardContainer>
           </S.SearchResult>
-          {toolData?.length > 2 && (
+          {toolData.length > 2 && (
             <S.Toggle
               onClick={() => {
                 setIsOpen((prev) => !prev);
