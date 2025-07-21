@@ -27,9 +27,6 @@ const useToolCategorySelect = () => {
         toolName: state.toolName,
         toolLogo: state.toolLogo,
       });
-    } else {
-      setPickedtool(null);
-      setIsNoTopic(true);
     }
   }, [location.pathname, state]);
 
