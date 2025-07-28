@@ -16,15 +16,6 @@ interface Comment {
 }
 
 const CommentCard = ({ comment }: Comment) => {
-  const {
-    isOwnPost,
-    isOpen,
-    modalType,
-    isWarning: authError,
-    handleModalOpen,
-    handleModalClose,
-    handleReport,
-  } = usePostActions(comment.nickname);
   const { id } = useParams<{ id: string }>();
   const [isImgModalOpen, setIsImgModalOpen] = useState(false);
   const { mutate, isError: deleteError } = useCommentDeleteMutation(comment.commentId, id);
@@ -34,6 +25,20 @@ const CommentCard = ({ comment }: Comment) => {
   const handleDropdownToggle = (id: number) => {
     setOpenedId((prev) => (prev === id ? null : id));
   };
+
+  const handleDropdownClose = () => {
+    setOpenedId(null);
+  };
+
+  const {
+    isOwnPost,
+    isOpen,
+    modalType,
+    isWarning: authError,
+    handleModalOpen,
+    handleModalClose,
+    handleReport,
+  } = usePostActions(comment.nickname, handleDropdownClose);
 
   useEffect(() => {
     if (deleteError) {
