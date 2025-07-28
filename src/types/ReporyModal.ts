@@ -2,7 +2,8 @@ export type BaseProps = {
   isOpen: boolean;
   handleClose: () => void;
   handleToastOpen: () => void;
-  handleTaostMsg: (msg: string) => void;
+  handleToastMsg: (msg: string) => void;
+  content: string;
 };
 
 export type BoardOnly = {
