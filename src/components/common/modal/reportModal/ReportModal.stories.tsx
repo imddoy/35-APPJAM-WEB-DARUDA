@@ -37,7 +37,7 @@ const ReportModalStoryComponent = (args: React.ComponentProps<typeof ReportModal
         {...args}
         isOpen={isOpen}
         handleClose={handleClose}
-        handleTaostMsg={handleTaostMsg}
+        handleToastMsg={handleTaostMsg}
         handleToastOpen={handleToastOpen}
       />
     </div>
@@ -49,7 +49,7 @@ export const Report: Story = {
     isOpen: false,
     handleClose: () => {},
     handleToastOpen: () => {},
-    handleTaostMsg: () => {},
+    handleToastMsg: () => {},
   },
   render: (args) => <ReportModalStoryComponent {...args} />,
 };
