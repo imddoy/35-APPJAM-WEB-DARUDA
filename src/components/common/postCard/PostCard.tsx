@@ -22,14 +22,14 @@ interface CardDataProp {
   noTopic?: boolean;
   isDropdownOpen: boolean;
   onDropdownToggle: () => void;
+  onDropdownClose: () => void;
 }
 
 const Card = forwardRef<HTMLLIElement, CardDataProp>((props, ref) => {
   const navigate = useNavigate();
   // prop 으로 전달 받은 board 정보
-  const { post, forDetail = false, pickedtool, noTopic, isDropdownOpen, onDropdownToggle } = props;
-  const { boardId, toolName, toolLogo, toolId, title, content, images, updatedAt, author, commentCount, isScraped } =
-    post;
+  const { post, forDetail = false, pickedtool, noTopic, isDropdownOpen, onDropdownToggle, onDropdownClose } = props;
+  const { boardId, toolName, toolLogo, title, content, images, updatedAt, author, commentCount, isScraped } = post;
 
   const {
     isOwnPost,
@@ -41,7 +41,7 @@ const Card = forwardRef<HTMLLIElement, CardDataProp>((props, ref) => {
     handleReport,
     preventPropogation,
     handleWarning,
-  } = usePostActions(author);
+  } = usePostActions(author, onDropdownClose);
   const { isToastOpen, handleModalOpen: handleToastOpen } = useToastOpen(); // 토스트 팝업 훅
 
   const [clickedIdx, setClickedIdx] = useState(0);
@@ -54,11 +54,16 @@ const Card = forwardRef<HTMLLIElement, CardDataProp>((props, ref) => {
       e.preventDefault();
     } else {
       sessionStorage.setItem('scrollPosition', window.scrollY.toString());
+      navigate(`/community/${boardId}`);
     }
-    navigate(`/community/${boardId}`);
   };
 
-  const { isSuccess: isBookMarkSuccess, mutate: srapMutate } = useBoardScrapMutation(pickedtool, noTopic, boardId);
+  const {
+    isSuccess: isBookMarkSuccess,
+    mutate: srapMutate,
+    isPending: isScrapPending,
+  } = useBoardScrapMutation(pickedtool, noTopic, boardId); // 북마크 추가 / 삭제
+  const { mutate: DeleteMutate, isPending: isDeletePending } = useBoardDeleteMutation(boardId, pickedtool, noTopic); // 게시글 삭제
 
   const handleIdxRecord = (idx: number) => {
     setClickedIdx(idx);
@@ -97,11 +102,11 @@ const Card = forwardRef<HTMLLIElement, CardDataProp>((props, ref) => {
     }
   }, [isBookMarkSuccess, isScraped]);
 
-  const { mutate: DeleteMutate } = useBoardDeleteMutation(boardId, toolId, toolId === null);
-
   const handleImgModalDel = () => {
     DeleteMutate(boardId, {
       onSuccess: () => {
+        handleModalClose();
+        handleToastOpen();
         handleToastMsg('게시글이 삭제되었어요');
       },
     });
@@ -181,7 +186,13 @@ const Card = forwardRef<HTMLLIElement, CardDataProp>((props, ref) => {
                   </DropDown.Item>
                 </>
               ) : (
-                <DropDown.Item status="danger" onClick={handleReport}>
+                <DropDown.Item
+                  status="danger"
+                  onClick={() => {
+                    handleReport();
+                    onDropdownClose();
+                  }}
+                >
                   신고하기
                 </DropDown.Item>
               )}
@@ -217,7 +228,7 @@ const Card = forwardRef<HTMLLIElement, CardDataProp>((props, ref) => {
           }}
         />
       )}
-      {isToastOpen && (
+      {!isScrapPending && !isDeletePending && isToastOpen && (
         <Toast isVisible={isToastOpen} isWarning={false}>
           {toastMessage}
         </Toast>
