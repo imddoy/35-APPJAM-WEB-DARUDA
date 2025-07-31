@@ -1,4 +1,6 @@
+import mixpanel from 'mixpanel-browser';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { useInfoQuery } from '@apis/user';
 import { AFFILIATION_OPTIONS } from '@pages/myPage/constants/affiliationOptions';
@@ -22,6 +24,13 @@ const MixpanelUserSetup = () => {
       });
     }
   }, [user, isReady]);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!isReady) return;
+    mixpanel.track_pageview();
+  }, [location.pathname]);
   return null;
 };
 
