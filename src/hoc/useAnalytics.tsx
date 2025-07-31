@@ -27,6 +27,7 @@ const AnalyticsProvider = ({ children }: { children: React.ReactNode }) => {
       loaded: () => setIsReady(true),
       record_sessions_percent: 100,
       record_heatmap_data: true,
+      track_pageview: 'url-with-path',
     });
   }, []);
 
