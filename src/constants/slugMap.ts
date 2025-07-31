@@ -1,5 +1,5 @@
 // slug, name 매핑
-// Generated at: 2025-07-31T14:14:01.948Z
+// Generated at: 2025-07-31T15:14:22.834Z
 // Total tools: 104
 
 export const slug_to_id = {
