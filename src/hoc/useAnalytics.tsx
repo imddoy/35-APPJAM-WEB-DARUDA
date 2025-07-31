@@ -1,10 +1,11 @@
 import mixpanel from 'mixpanel-browser';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
 import { EventName } from '@constants/event';
 
 type AnalyticsContextProps = {
   trackEvent: <T extends Record<string, unknown>>(eventName: EventName, eventProperties?: T) => void;
+  trackPageView: () => void;
   setUserProperty: (userId: string, properties: Record<string, unknown>) => void;
   isReady: boolean;
 };
@@ -41,6 +42,18 @@ const AnalyticsProvider = ({ children }: { children: React.ReactNode }) => {
     mixpanel.track(eventName, eventProperties);
   };
 
+  const trackPageView = useCallback(() => {
+    if (!isReady) {
+      console.warn('Mixpanel이 아직 준비되지 않았습니다 - trackPageView');
+      return;
+    }
+    if (isDev) {
+      console.log('[TRACKING] Page View');
+      return;
+    }
+    mixpanel.track_pageview();
+  }, [isReady, isDev]);
+
   const setUserProperty = (userId: string, properties: Record<string, unknown>) => {
     if (!isReady) {
       console.warn('Mixpanel이 아직 준비되지 않았습니다');
@@ -56,7 +69,9 @@ const AnalyticsProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AnalyticsContext.Provider value={{ trackEvent, setUserProperty, isReady }}>{children}</AnalyticsContext.Provider>
+    <AnalyticsContext.Provider value={{ trackEvent, trackPageView, setUserProperty, isReady }}>
+      {children}
+    </AnalyticsContext.Provider>
   );
 };
 
