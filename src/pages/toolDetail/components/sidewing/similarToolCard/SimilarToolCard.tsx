@@ -3,13 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './SimilarToolCard.styled';
 import { AlternativeTool } from '@apis/tool';
 import { Free, Half, Paid } from '@assets/svgs';
+import { toSlug } from '@utils';
 
-const SimilarToolCard = ({ toolId, toolLogo, toolName, license, keywords }: AlternativeTool) => {
+const SimilarToolCard = ({
+  toolLogo,
+  toolName,
+  license,
+  keywords,
+}: Pick<AlternativeTool, 'toolLogo' | 'toolName' | 'license' | 'keywords'>) => {
   const navigate = useNavigate();
 
   const handleToolCardClick = () => {
     // 해당 toolId로 이동
-    navigate(`/toollist/${toolId}`);
+    navigate(`/toollist/${toSlug(toolName)}`);
   };
 
   const renderLicenseIcon = () => {
@@ -26,7 +32,7 @@ const SimilarToolCard = ({ toolId, toolLogo, toolName, license, keywords }: Alte
   };
 
   return (
-    <S.CardWrapper onClick={handleToolCardClick}>
+    <S.CardWrapper onClick={handleToolCardClick} aria-label={`${toolName}으로 이동`}>
       <S.TopContainer>
         <S.CardLogo src={toolLogo} alt={`${toolName} 로고`} />
         <S.InfoBox>
