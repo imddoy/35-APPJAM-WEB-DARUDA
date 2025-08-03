@@ -1,3 +1,5 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import { SelectedToolChip, CategoryHeader } from './atom';
 import * as S from './ToolListBanner.styled';
 import { useToolBanner } from '@hooks/index';
@@ -12,8 +14,11 @@ const ToolListBanner = ({ forCommunity = false, onToolSelect = () => {} }: ToolP
   const { toolState, categoryData, handleCategoryClick, handleFreeCheck, setToolState, clearSelectedTool } =
     useToolBanner({
       onToolSelect,
+      forCommunity,
     });
   const { trackEvent } = useAnalytics();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <S.Container $forCommunity={forCommunity}>
@@ -67,14 +72,17 @@ const ToolListBanner = ({ forCommunity = false, onToolSelect = () => {} }: ToolP
                           }));
                           trackEvent('Tool_Click', { type: 'Community', tool: tool.toolName });
                           onToolSelect(tool.toolId, false);
-                          sessionStorage.setItem(
-                            'originTool',
-                            JSON.stringify({
-                              toolId: tool.toolId,
-                              toolName: tool.toolName,
-                              toolLogo: tool.toolLogo,
-                            }),
-                          );
+                          if (forCommunity) {
+                            sessionStorage.setItem(
+                              'originTool',
+                              JSON.stringify({
+                                toolId: tool.toolId,
+                                toolName: tool.toolName,
+                                toolLogo: tool.toolLogo,
+                              }),
+                            );
+                            navigate(location.pathname, { replace: true, state: null });
+                          }
                         }}
                         isSelected={toolState.selectedTool?.toolId === tool.toolId}
                       >

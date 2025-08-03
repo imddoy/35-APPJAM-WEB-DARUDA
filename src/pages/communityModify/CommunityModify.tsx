@@ -7,7 +7,7 @@ import WritingImg from './components/writingImg/WritingImg';
 import WritingTitle from './components/writingTitle/WritingTitle';
 import useCommunityModify from './hooks/UseCommunityModify';
 import { PostType } from './types/PostType';
-import { useBoardUpdateMutation } from '@apis/board';
+import { useBoardUpdateMutation, useDetailBoardQuery } from '@apis/board';
 import ToolListBanner from '@components/banner/ToolListBanner';
 import CircleButton from '@components/button/circleButton/CircleButton';
 import Meta from '@components/meta/Meta';
@@ -18,19 +18,33 @@ const CommunityModify = () => {
   const [post, setPost] = useState<PostType | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const boardId = location.state?.post?.boardId;
+  const { data: postData } = useDetailBoardQuery(boardId);
+  const [existingImageUrls, setExistingImageUrls] = useState<string[]>([]);
+  const [newImageFiles, setNewImageFiles] = useState<File[]>([]);
 
+  // state 없으면 접근 불가 (수정하기 버튼을 눌러야 접근 가능)
   useEffect(() => {
-    if (location.state?.post) {
-      setPost(location.state.post);
-    } else {
+    if (!location.state?.post) {
       navigate('/');
     }
   }, []);
 
+  // 초기값 세팅
+  useEffect(() => {
+    if (postData) {
+      setPost(postData);
+      setTitle(postData.title);
+      setBody(postData.content);
+      handleToolSelect(postData.toolId, postData.toolId === null);
+      setExistingImageUrls(postData.images ?? []);
+    }
+  }, [postData]);
+
   const originTool = useMemo(() => {
     return post
       ? { toolId: post.toolId, toolName: post.toolName, toolLogo: post.toolLogo }
-      : { toolId: 0, toolName: '알 수 없음', toolLogo: '' }; // 기본값 설정
+      : { toolId: 0, toolName: '알 수 없음', toolLogo: '' };
   }, [post]);
 
   const { title, setTitle, body, setBody, selectedTool, isFree, handleToolSelect } = useCommunityModify(
@@ -38,15 +52,14 @@ const CommunityModify = () => {
   );
 
   const [isToastVisible, setIsToastVisible] = useState(false);
-  const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isImgSame, setIsImgSame] = useState(true);
   const { mutate: patchMutate, error } = useBoardUpdateMutation();
 
   const handlePostSubmit = async () => {
     if (isButtonDisabled || !post) return;
-
-    const formData = await createPostFormData(title, body, isFree, selectedTool, imageFiles);
+    const allImages: (string | File)[] = [...existingImageUrls, ...newImageFiles];
+    const formData = await createPostFormData(title, body, isFree, selectedTool, allImages);
 
     const req = { id: post.boardId, data: formData };
     await patchMutate(req);
@@ -55,42 +68,26 @@ const CommunityModify = () => {
   };
 
   useEffect(() => {
-    if (post) {
-      setTitle(post.title);
-      setBody(post.content);
-      handleToolSelect(post.toolId);
-    }
-  }, [post]);
-
-  // 이미지 URL → File 변환
-  const fetchFiles = async (imageUrls: string[]): Promise<File[]> => {
-    const filePromises = imageUrls.map(async (imageUrl, index) => {
-      const response = await fetch(imageUrl);
-      const blob = await response.blob();
-      return new File([blob], `image-${index}.jpg`, { type: blob.type });
-    });
-
-    return await Promise.all(filePromises);
-  };
-
-  // post.images를 File[]로 변환하여 상태 저장
-  useEffect(() => {
-    if (post?.images) {
-      fetchFiles(post.images).then(setImageFiles);
-    }
-  }, [post]);
-
-  useEffect(() => {
     if (!post) return;
-    const isNull = title.trim() === '' || body.trim() === '';
-    const isSame = title === post?.title && body === post.content && isImgSame && selectedTool === post.toolId;
+    const isNull = title.trim() === '' || body.trim() === '' || (!isFree && selectedTool === null);
+    const isSame = title === post?.title && body === post?.content && isImgSame && selectedTool === post?.toolId;
 
     setIsButtonDisabled(isNull || isSame);
-  }, [title, body, selectedTool, isImgSame]);
+  }, [title, body, selectedTool, isImgSame, isFree]);
 
   const handleImageUpload = (newImages: File[]) => {
-    setImageFiles(newImages);
-    setIsImgSame(false); // 이미지 변경 플래그
+    setNewImageFiles((prev) => [...prev, ...newImages]);
+    setIsImgSame(false);
+  };
+
+  const handleDeleteExistingImage = (url: string) => {
+    setExistingImageUrls((prev) => prev.filter((item) => item !== url));
+    setIsImgSame(false);
+  };
+
+  const handleDeleteNewImage = (index: number) => {
+    setNewImageFiles((prev) => prev.filter((_, i) => i !== index));
+    setIsImgSame(false);
   };
 
   if (!post) {
@@ -109,9 +106,16 @@ const CommunityModify = () => {
               originBody={post.content}
               setBody={setBody}
               onImageUpload={handleImageUpload}
-              images={imageFiles}
+              existingImages={existingImageUrls}
+              newImages={newImageFiles}
             />
-            <WritingImg images={imageFiles} onImageUpload={handleImageUpload} />
+            <WritingImg
+              existingImages={existingImageUrls}
+              newImages={newImageFiles}
+              onImageUpload={handleImageUpload}
+              onDeleteExisting={handleDeleteExistingImage}
+              onDeleteNew={handleDeleteNewImage}
+            />
           </S.WriteBox>
           <S.SideBanner>
             <ToolListBanner originTool={originTool} onToolSelect={handleToolSelect} />
