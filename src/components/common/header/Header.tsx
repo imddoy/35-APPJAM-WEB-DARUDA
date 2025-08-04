@@ -102,9 +102,11 @@ const SearchInput = () => {
 
 const Auth = () => {
   const user = localStorage.getItem('user');
+  const parsedUser = user ? JSON.parse(user) : null;
+  const userId = parsedUser?.userId ?? null;
   const navigate = useNavigate();
   const [isHover, setIsHovered] = useState(false);
-  const { data: recentList } = useRecentNotiListQuery(!!user);
+  const { data: recentList } = useRecentNotiListQuery(!!userId);
   const { mutate: readMutation } = useReadMutation();
   const { isModalOpen, openedNoti, handleModalClose, handleReadClick } = useNotiClick(readMutation, recentList);
 
