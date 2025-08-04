@@ -83,7 +83,19 @@ export const useToolScrapMutation = (isFree?: boolean, category?: string, criter
       if (!isMyPage) {
         queryClient.invalidateQueries({ queryKey: MYPAGE_QUERY_KEY.MY_FAVORITE_TOOL_LIST() });
       }
-      queryClient.refetchQueries({ queryKey: TOOL_QUERY_KEY.DETAIL(_toolId) });
+      queryClient.invalidateQueries({ queryKey: TOOL_QUERY_KEY.DETAIL(_toolId) });
+      queryClient.invalidateQueries({
+        predicate: (query) => {
+          const isToolListQuery = query.queryKey[0] === TOOL_QUERY_KEY.LIST({})?.[0];
+          if (!isToolListQuery) return false;
+          const queryData = query.state.data as InfiniteQueryResponse;
+          if (queryData && queryData.pages) {
+            const isToolIncluded = queryData.pages.some((page) => page.tools?.some((tool) => tool.toolId === _toolId));
+            return isToolIncluded;
+          }
+          return false;
+        },
+      });
     },
   });
 };
