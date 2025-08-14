@@ -25,7 +25,7 @@ const fetchToolDetail = async (toolId: number) => {
 };
 
 const main = async () => {
-  const sitemap = new SitemapStream({ hostname: 'https://daruda.site' });
+  const sitemap = new SitemapStream({ hostname: 'https://www.daruda.site' });
 
   // 정적 페이지
   sitemap.write({ url: '/', priority: 0.8, changefreq: 'weekly' });
