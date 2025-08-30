@@ -1,21 +1,23 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router';
 
 import MYPAGE_ROUTES from './MyPageRoutes';
-import Community from '@pages/community/Community';
-import CommunityDetail from '@pages/communityDetail/CommunityDetail';
-import CommunityModify from '@pages/communityModify/CommunityModify';
-import CommunityWrite from '@pages/communityWrite/CommunityWrite';
-import NotFound from '@pages/error/NotFound';
-import Intro from '@pages/intro/Intro';
-import KakaoAuth from '@pages/login/KakaoAuth';
-import KakaoRedirectHandler from '@pages/login/KakaoRedirectHandler';
-import Notification from '@pages/notification/Notification';
-import Search from '@pages/search/Search';
-import SignUp from '@pages/signUp/SignUp';
-import ToolDetail from '@pages/toolDetail/ToolDetail';
-import ToolList from '@pages/toolList/ToolList';
 import Layout from 'src/components/layout/Layout';
 import MyPageLayout from 'src/components/layout/MyPageLayout';
+
+const Community = lazy(() => import('@pages/community/Community'));
+const CommunityDetail = lazy(() => import('@pages/communityDetail/CommunityDetail'));
+const CommunityModify = lazy(() => import('@pages/communityModify/CommunityModify'));
+const CommunityWrite = lazy(() => import('@pages/communityWrite/CommunityWrite'));
+const NotFound = lazy(() => import('@pages/error/NotFound'));
+const Intro = lazy(() => import('@pages/intro/Intro'));
+const KakaoAuth = lazy(() => import('@pages/login/KakaoAuth'));
+const KakaoRedirectHandler = lazy(() => import('@pages/login/KakaoRedirectHandler'));
+const Notification = lazy(() => import('@pages/notification/Notification'));
+const Search = lazy(() => import('@pages/search/Search'));
+const SignUp = lazy(() => import('@pages/signUp/SignUp'));
+const ToolDetail = lazy(() => import('@pages/toolDetail/ToolDetail'));
+const ToolList = lazy(() => import('@pages/toolList/ToolList'));
 
 const router = createBrowserRouter([
   {
