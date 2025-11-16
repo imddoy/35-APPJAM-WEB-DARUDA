@@ -104,7 +104,7 @@ const Auth = () => {
   const user = localStorage.getItem('user');
   const navigate = useNavigate();
   const [isHover, setIsHovered] = useState(false);
-  const { data: recentList } = useRecentNotiListQuery(!!user);
+  const { data: recentList } = useRecentNotiListQuery(!!user && !!JSON.parse(user).userId);
   const { mutate: readMutation } = useReadMutation();
   const { isModalOpen, openedNoti, handleModalClose, handleReadClick } = useNotiClick(readMutation, recentList);
 
@@ -123,7 +123,7 @@ const Auth = () => {
 
   const hasUnreadNotification = recentList?.some((notification) => !notification.isRead);
 
-  if (user) {
+  if (user && JSON.parse(user).userId) {
     return (
       <S.AuthSection aria-label="알림/마이페이지">
         <li>
