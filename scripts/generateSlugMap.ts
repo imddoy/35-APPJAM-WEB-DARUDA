@@ -93,11 +93,26 @@ const main = async () => {
         // API 호출 간격 (Rate Limiting 방지)
         await new Promise((resolve) => setTimeout(resolve, 100));
       } catch (error) {
-        console.error(`Error: 페이지 ${pageCount} 호출 실패:`, error.message);
-        if (axios.isAxiosError && axios.isAxiosError(error)) {
-          console.error('Status:', error.response?.status);
-          console.error('Data:', error.response?.data);
+        if (axios.isAxiosError(error)) {
+          const status = error.response?.status;
+          const data = error.response?.data;
+          const code = data?.code;
+
+          if (status === 404 && code === 'E404001') {
+            console.log(
+              `페이지 ${pageCount}에서 404(E404001: 데이터가 존재하지 않습니다) 응답을 받았습니다. ` +
+                '더 이상 가져올 데이터가 없는 것으로 간주하고 페이징을 종료합니다.',
+            );
+            break;
+          }
+
+          console.error(`Error: 페이지 ${pageCount} 호출 실패:`, error.message);
+          console.error('Status:', status);
+          console.error('Data:', data);
+        } else {
+          console.error(`Error: 페이지 ${pageCount} 호출 실패:`, error?.message ?? error);
         }
+
         throw error;
       }
     }
