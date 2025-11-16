@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { postAuthorization } from '@apis/auth';
 import { useInfoQuery } from '@apis/user';
@@ -7,6 +8,7 @@ import { AlterModal } from '@components/modal';
 import { extractUserId } from '@utils';
 
 const KakaoRedirectHandler = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState('');
   const [modalContent, setModalContent] = useState('');
@@ -61,7 +63,7 @@ const KakaoRedirectHandler = () => {
           setModalTitle('회원가입 필요');
           setModalContent('회원가입이 필요합니다.');
           setButtonText('회원가입 페이지로 돌아가기');
-          setOnConfirm(() => () => (window.location.href = '/signup'));
+          setOnConfirm(() => () => navigate('/signup'));
         }
         setIsOpen(true);
       } catch (error) {
